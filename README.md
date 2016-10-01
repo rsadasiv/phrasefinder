@@ -2,6 +2,8 @@
 
 The official Java client for the [PhraseFinder](http://phrasefinder.io) web service
 
+* [Documentation](https://mtrenkmann.github.io/phrasefinder-client-java/)
+
 ## Demo
 
 ```java
