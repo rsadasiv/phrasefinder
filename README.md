@@ -54,14 +54,16 @@ public final class Demo {
 }
 ```
 
-### Compile and run
+## Clone, compile, run
 
 ```sh
+git clone https://github.com/mtrenkmann/phrasefinder-client-java.git
+cd phrasefinder-client-java
 javac -sourcepath src src/Demo.java
 java -classpath src Demo
 ```
 
-### Output
+## Output
 
 ```
 0.175468 I_0 like_0 to_1 think_1 of_1
@@ -79,6 +81,4 @@ Remaining quota: 99
 
 ## Installation
 
-The simplest way is to copy the content of the `src` folder into your own
-project's source folder.
-
+Copy the content of the `src` folder into the source directory of your project.
