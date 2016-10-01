@@ -36,7 +36,7 @@ import java.util.List;
 public final class PhraseFinder {
   
   /**
-   * VERSION is the version number as one integer.
+   * Defines the version number as one integer.
    */
   public static int VERSION = 1000; // major * 10^6 + minor * 10^3 + micro
 
