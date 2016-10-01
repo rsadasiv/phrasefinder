@@ -36,6 +36,11 @@ import java.util.List;
 public final class PhraseFinder {
   
   /**
+   * VERSION is the version number as one integer.
+   */
+  public static int VERSION = 1000; // major * 10^6 + minor * 10^3 + micro
+
+  /**
    * Corpus is a numeric type that represents a corpus to be searched. All corpora belong to version
    * 2 of the <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html"> Google
    * Books Ngram Dataset</a>.
