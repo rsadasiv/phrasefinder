@@ -57,7 +57,7 @@ public final class PhraseFinder {
    * correspond to the original HTTP code.
    */
   public static enum Status {
-    /** The request was valid and the response body contains the result. */
+    /** The request was successful and the response body contains the result. */
     OK,
 
     /**
@@ -91,7 +91,7 @@ public final class PhraseFinder {
   public static class Token {
 
     /**
-     * TokenTag denotes the role of a token with respect to the query.
+     * Tag denotes the role of a token with respect to the query.
      */
     public static enum Tag {
       /** The token was given as part of the query. */
