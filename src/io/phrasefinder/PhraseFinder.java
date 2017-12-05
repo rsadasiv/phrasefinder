@@ -159,17 +159,6 @@ public final class PhraseFinder {
     private int relativeId;
     private double score;
 
-    public Phrase(Token[] tokens, long matchCount, int volumeCount, int firstYear, int lastYear,
-        int relativeId, double score) {
-      this.tokens = tokens;
-      this.matchCount = matchCount;
-      this.volumeCount = volumeCount;
-      this.firstYear = firstYear;
-      this.lastYear = lastYear;
-      this.relativeId = relativeId;
-      this.score = score;
-    }
-
     /**
      * Returns the phrase's tokens.
      */
@@ -296,15 +285,23 @@ public final class PhraseFinder {
    * Result represents a search result.
    */
   public static class Result {
-    /**
-     * The status of the associated response.
-     */
-    public Status status;
+
+    private Status status;
+    private Phrase[] phrases;
 
     /**
-     * A list of matching phrases.
+     * Returns the status of the response.
      */
-    public Phrase[] phrases;
+    public Status getStatus() {
+      return status;
+    }
+
+    /**
+     * Returns the matching phrases.
+     */
+    public Phrase[] getPhrases() {
+      return phrases;
+    }
   }
 
   /**
@@ -348,9 +345,15 @@ public final class PhraseFinder {
             tokens[i] = new Token(toTag(Integer.parseInt(terms[i].substring(termLength - 1))),
                 terms[i].substring(0, termLength - 2));
           }
-          phrases.add(new Phrase(tokens, Long.parseLong(parts[1]), Integer.parseInt(parts[2]),
-              Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]),
-              Double.parseDouble(parts[6])));
+          Phrase phrase = new Phrase();
+          phrase.tokens = tokens;
+          phrase.matchCount = Long.parseLong(parts[1]);
+          phrase.volumeCount = Integer.parseInt(parts[2]);
+          phrase.firstYear = Integer.parseInt(parts[3]);
+          phrase.lastYear = Integer.parseInt(parts[4]);
+          phrase.relativeId = Integer.parseInt(parts[5]);
+          phrase.score = Double.parseDouble(parts[6]);
+          phrases.add(phrase);
         }
         response.phrases = phrases.toArray(new Phrase[0]);
       }
