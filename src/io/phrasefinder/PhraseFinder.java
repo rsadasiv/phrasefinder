@@ -226,26 +226,73 @@ public final class PhraseFinder {
    * Options represents optional parameters that can be sent along with a query.
    */
   public static class Options {
-    /**
-     * The corpus to be searched.
-     */
-    public Corpus corpus = Corpus.AMERICAN_ENGLISH;
+
+    private Corpus corpus = Corpus.AMERICAN_ENGLISH;
+    private int minPhraseLength = 1;
+    private int maxPhraseLength = 5;
+    private int maxResults = 100;
 
     /**
-     * The minimum length of matching phrases (number of tokens) to be included in the result set.
+     * Returns the type of the corpus to be searched.
      */
-    public int nmin = 1;
+    public Corpus getCorpus() {
+      return corpus;
+    }
 
     /**
-     * The maximum length of matching phrases (number of tokens) to be included in the result set.
+     * Sets the corpus to be searched. Defaults to {@link Corpus#AMERICAN_ENGLISH} if not set.
      */
-    public int nmax = 5;
+    public void setCorpus(Corpus corpus) {
+      this.corpus = corpus;
+    }
 
     /**
-     * The maximum number of phrases to be returned. A smaller value may lead to slightly faster
-     * responses.
+     * Returns the minimum length of matching phrases (number of tokens) to be included in the
+     * result set.
      */
-    public int topk = 100;
+    public int getMinPhraseLength() {
+      return minPhraseLength;
+    }
+
+    /**
+     * Sets the minimum length of matching phrases (number of tokens) to be included in the result
+     * set. Defaults to 1 if not set.
+     */
+    public void setMinPhraseLength(int minPhraseLength) {
+      this.minPhraseLength = minPhraseLength;
+    }
+
+    /**
+     * Returns the maximum length of matching phrases (number of tokens) to be included in the
+     * result set.
+     */
+    public int getMaxPhraseLength() {
+      return maxPhraseLength;
+    }
+
+    /**
+     * Sets the maximum length of matching phrases (number of tokens) to be included in the result
+     * set. Defaults to 5 if not set.
+     */
+    public void setMaxPhraseLength(int maxPhraseLength) {
+      this.maxPhraseLength = maxPhraseLength;
+    }
+
+    /**
+     * Returns the maximum number of phrases to be returned.
+     */
+    public int getMaxResults() {
+      return maxResults;
+    }
+
+    /**
+     * Sets the maximum number of phrases to be returned. A smaller value may lead to slightly
+     * faster response times. Defaults to 100 if not set.
+     */
+    public void setMaxResults(int maxResults) {
+      this.maxResults = maxResults;
+    }
+
   }
 
   /**
@@ -362,8 +409,9 @@ public final class PhraseFinder {
     StringBuilder sb = new StringBuilder();
     sb.append("http://phrasefinder.io/search?format=tsv").append("&query=")
         .append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()))
-        .append("&corpus=").append(toString(options.corpus)).append("&nmin=").append(options.nmin)
-        .append("&nmax=").append(options.nmax).append("&topk=").append(options.topk);
+        .append("&corpus=").append(toString(options.corpus)).append("&nmin=")
+        .append(options.minPhraseLength).append("&nmax=").append(options.maxPhraseLength)
+        .append("&topk=").append(options.maxResults);
     return new URL(sb.toString());
   }
 
