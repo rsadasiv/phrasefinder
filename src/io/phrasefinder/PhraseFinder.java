@@ -174,9 +174,6 @@ public final class PhraseFinder {
 
     /** A list of matching phrases. */
     public Phrase[] phrases;
-
-    /** The remaining number of requests. */
-    public int quota;
   }
   
   /**
