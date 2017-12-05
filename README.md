@@ -14,6 +14,16 @@ To build and install the library into your local Maven repository, run
 mvn install
 ```
 
+Then, add the following dependency to the `pom.xml` of your own Maven managed project:
+
+```xml
+<dependency>
+  <groupId>io.phrasefinder</groupId>
+  <artifactId>phrasefinder</artifactId>
+  <version>0.2.0</version>
+</dependency>
+```
+
 Alternatively, if you want to build a .jar file without installing it, run
 
 ```sh
@@ -21,7 +31,6 @@ mvn package
 ```
 
 The .jar file will be placed in the `target` directory.
-
 
 ## Installation without Maven
 
