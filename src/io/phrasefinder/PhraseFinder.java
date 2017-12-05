@@ -143,7 +143,6 @@ public final class PhraseFinder {
     public String getText() {
       return text;
     }
-
   }
 
   /**
@@ -219,7 +218,6 @@ public final class PhraseFinder {
     public double getScore() {
       return score;
     }
-
   }
 
   /**
@@ -292,7 +290,6 @@ public final class PhraseFinder {
     public void setMaxResults(int maxResults) {
       this.maxResults = maxResults;
     }
-
   }
 
   /**
