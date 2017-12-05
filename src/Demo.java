@@ -30,11 +30,11 @@ public final class Demo {
     // Set up your query.
     String query = "I like ???";
 
-    // Set the optional parameter topk to 10.
+    // Set the maximum number of phrases to return (optional).
     Options options = new Options();
     options.setMaxResults(10);
 
-    // Perform a request.
+    // Send the request.
     Result result;
     try {
       result = PhraseFinder.search(query, options);
