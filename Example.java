@@ -23,7 +23,7 @@ import io.phrasefinder.PhraseFinder.Token;
 
 import java.io.IOException;
 
-public final class Demo {
+public final class Example {
 
   public static void main(String[] args) {
 
