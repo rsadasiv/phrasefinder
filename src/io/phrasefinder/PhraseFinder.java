@@ -61,9 +61,7 @@ public final class PhraseFinder {
    * Books Ngram Dataset</a>.
    */
   public static enum Corpus {
-    ENGLISH_US, ENGLISH_GB, SPANISH, FRENCH, GERMAN, RUSSIAN,
-    /** Simplified Chinese */
-    CHINESE
+    AMERICAN_ENGLISH, BRITISH_ENGLISH, CHINESE, FRENCH, GERMAN, RUSSIAN, SPANISH
   }
   
   /**
@@ -160,7 +158,7 @@ public final class PhraseFinder {
    */
   public static class Options {
     /** The corpus to be searched. */
-    public Corpus corpus = Corpus.ENGLISH_US;
+    public Corpus corpus = Corpus.AMERICAN_ENGLISH;
 
     /**
      * The minimum length of matching phrases (number of tokens) to be included in the result set.
@@ -271,8 +269,8 @@ public final class PhraseFinder {
   
   private static String toString(Corpus corpus) {
     switch (corpus) {
-      case ENGLISH_US: return "eng-us";
-      case ENGLISH_GB: return "eng-gb";
+      case AMERICAN_ENGLISH: return "eng-us";
+      case BRITISH_ENGLISH: return "eng-gb";
       case SPANISH:    return "spa";
       case FRENCH:     return "fre";
       case GERMAN:     return "ger";
