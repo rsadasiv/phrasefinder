@@ -203,7 +203,6 @@ public final class PhraseFinder {
     Result response = new Result();
     response.status = toStatus(connection.getResponseCode());
     if (response.status == Status.OK) {
-      response.quota = Integer.parseInt(connection.getHeaderField("X-Quota"));
       try (BufferedReader reader = new BufferedReader(
           new InputStreamReader(connection.getInputStream(),
               java.nio.charset.StandardCharsets.UTF_8))) {
