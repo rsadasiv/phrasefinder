@@ -56,6 +56,5 @@ public final class Demo {
       }
       System.out.println();
     }
-    System.out.println("Remaining quota: " + result.quota);
   }
 }
