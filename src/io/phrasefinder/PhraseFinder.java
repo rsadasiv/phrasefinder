@@ -151,40 +151,75 @@ public final class PhraseFinder {
    * metadata.
    */
   public static class Phrase {
-    /**
-     * The tokens of the phrase.
-     */
-    public Token[] tokens;
+
+    private Token[] tokens;
+    private long matchCount;
+    private int volumeCount;
+    private int firstYear;
+    private int lastYear;
+    private int relativeId;
+    private double score;
+
+    public Phrase(Token[] tokens, long matchCount, int volumeCount, int firstYear, int lastYear,
+        int relativeId, double score) {
+      this.tokens = tokens;
+      this.matchCount = matchCount;
+      this.volumeCount = volumeCount;
+      this.firstYear = firstYear;
+      this.lastYear = lastYear;
+      this.relativeId = relativeId;
+      this.score = score;
+    }
 
     /**
-     * The absolute frequency in the corpus.
+     * Returns the phrase's tokens.
      */
-    public long matchCount;
+    public Token[] getTokens() {
+      return tokens;
+    }
 
     /**
-     * The number of books it appears in.
+     * Returns the phrase's match count, also called its absolute frequency.
      */
-    public int volumeCount;
+    public long getMatchCount() {
+      return matchCount;
+    }
 
     /**
-     * Publication date of the first book it appears in.
+     * Returns the phrase's volume count which is the number of books the phrase appears in.
      */
-    public int firstYear;
+    public int getVolumeCount() {
+      return volumeCount;
+    }
 
     /**
-     * Publication date of the last book it appears in.
+     * Returns the phrase's first year of occurrence.
      */
-    public int lastYear;
+    public int getFirstYear() {
+      return firstYear;
+    }
 
     /**
-     * See the API documentation on the website.
+     * Returns the phrase's last year of occurrence.
      */
-    public int relativeId;
+    public int getLastYear() {
+      return lastYear;
+    }
 
     /**
-     * The relative frequency it matched the given query.
+     * Returns the phrase's relative id.
      */
-    public double score;
+    public int getRelativeId() {
+      return relativeId;
+    }
+
+    /**
+     * Returns the phrase's score, also called its relative frequency.
+     */
+    public double getScore() {
+      return score;
+    }
+
   }
 
   /**
@@ -261,22 +296,17 @@ public final class PhraseFinder {
         String line = null;
         List<Phrase> phrases = new ArrayList<>();
         while ((line = reader.readLine()) != null) {
-          Phrase phrase = new Phrase();
           String[] parts = line.split("\t");
-          String[] tokens = parts[0].split(" ");
-          phrase.tokens = new Token[tokens.length];
-          for (int i = 0; i != tokens.length; ++i) {
-            int length = tokens[i].length();
-            phrase.tokens[i] = new Token(toTag(Integer.parseInt(tokens[i].substring(length - 1))),
-                tokens[i].substring(0, length - 2));
+          String[] terms = parts[0].split(" ");
+          Token[] tokens = new Token[terms.length];
+          for (int i = 0; i < terms.length; i++) {
+            int termLength = terms[i].length();
+            tokens[i] = new Token(toTag(Integer.parseInt(terms[i].substring(termLength - 1))),
+                terms[i].substring(0, termLength - 2));
           }
-          phrase.matchCount = Long.parseLong(parts[1]);
-          phrase.volumeCount = Integer.parseInt(parts[2]);
-          phrase.firstYear = Integer.parseInt(parts[3]);
-          phrase.lastYear = Integer.parseInt(parts[4]);
-          phrase.relativeId = Integer.parseInt(parts[5]);
-          phrase.score = Double.parseDouble(parts[6]);
-          phrases.add(phrase);
+          phrases.add(new Phrase(tokens, Long.parseLong(parts[1]), Integer.parseInt(parts[2]),
+              Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]),
+              Double.parseDouble(parts[6])));
         }
         response.phrases = phrases.toArray(new Phrase[0]);
       }
