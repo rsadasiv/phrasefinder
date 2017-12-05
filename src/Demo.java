@@ -52,7 +52,7 @@ public final class Demo {
     for (Phrase phrase : result.phrases) {
       System.out.printf("%6f", phrase.score);
       for (Token token : phrase.tokens) {
-        System.out.printf(" %s_%d", token.text, token.tag.ordinal());
+        System.out.printf(" %s_%d", token.getText(), token.getTag().ordinal());
       }
       System.out.println();
     }

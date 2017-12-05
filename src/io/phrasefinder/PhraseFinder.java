@@ -109,9 +109,29 @@ public final class PhraseFinder {
       /** The token has been completed by an application of the "+" operator. */
       COMPLETED
     }
+    
+    private Tag tag;
+    private String text;
+    
+    public Token(Tag tag, String text) {
+      this.tag = tag;
+      this.text = text;
+    }
 
-    public String text;
-    public Tag tag;
+    /**
+     * Returns the token's tag.
+     */
+    public Tag getTag() {
+      return tag;
+    }
+    
+    /**
+     * Returns the token's text.
+     */
+    public String getText() {
+      return text;
+    }
+
   }
   
   /**
@@ -215,9 +235,9 @@ public final class PhraseFinder {
           phrase.tokens = new Token[tokens.length];
           for (int i = 0; i != tokens.length; ++i) {
             int length = tokens[i].length();
-            phrase.tokens[i]      = new Token();
-            phrase.tokens[i].text = tokens[i].substring(0, length - 2);
-            phrase.tokens[i].tag  = toTag(Integer.parseInt(tokens[i].substring(length - 1)));
+            phrase.tokens[i] = new Token(
+                toTag(Integer.parseInt(tokens[i].substring(length - 1))),
+                tokens[i].substring(0, length - 2));
           }
           phrase.matchCount  = Long.parseLong(parts[1]);
           phrase.volumeCount = Integer.parseInt(parts[2]);
