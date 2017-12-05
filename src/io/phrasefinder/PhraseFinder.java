@@ -416,5 +416,4 @@ public final class PhraseFinder {
     sb.append("&topk=").append(options.getMaxResults());
     return new URL(sb.toString());
   }
-
 }
