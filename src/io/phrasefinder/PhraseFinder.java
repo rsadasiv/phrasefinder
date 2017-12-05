@@ -407,11 +407,13 @@ public final class PhraseFinder {
   private static URL toUrl(String query, Options options)
       throws UnsupportedEncodingException, MalformedURLException {
     StringBuilder sb = new StringBuilder();
-    sb.append("http://phrasefinder.io/search?format=tsv").append("&query=")
-        .append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()))
-        .append("&corpus=").append(toString(options.corpus)).append("&nmin=")
-        .append(options.minPhraseLength).append("&nmax=").append(options.maxPhraseLength)
-        .append("&topk=").append(options.maxResults);
+    sb.append("http://phrasefinder.io/search?format=tsv");
+    sb.append("&query=")
+        .append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
+    sb.append("&corpus=").append(toString(options.getCorpus()));
+    sb.append("&nmin=").append(options.getMinPhraseLength());
+    sb.append("&nmax=").append(options.getMaxPhraseLength());
+    sb.append("&topk=").append(options.getMaxResults());
     return new URL(sb.toString());
   }
 
