@@ -28,7 +28,7 @@ public final class Demo {
   public static void main(String[] args) {
 
     // Set up your query.
-    String query = "I like ???";
+    String query = "I struggled ???";
 
     // Set the maximum number of phrases to return (optional).
     Options options = new Options();
@@ -52,7 +52,7 @@ public final class Demo {
     for (Phrase phrase : result.getPhrases()) {
       System.out.printf("%6f", phrase.getScore());
       for (Token token : phrase.getTokens()) {
-        System.out.printf(" %s_%d", token.getText(), token.getTag().ordinal());
+        System.out.printf(" %s", token.getText());
       }
       System.out.println();
     }
