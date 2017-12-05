@@ -32,7 +32,7 @@ public final class Demo {
     
     // Set the optional parameter topk to 10.
     Options options = new Options();
-    options.topk = 10;
+    options.setMaxResults(10);
     
     // Perform a request.
     Result result;
@@ -43,15 +43,15 @@ public final class Demo {
       return;
     }
 
-    if (result.status != Status.OK) {
-      System.out.println("Request was not successful: " + result.status);
+    if (result.getStatus() != Status.OK) {
+      System.out.println("Request was not successful: " + result.getStatus());
       return;
     }
     
     // Print phrases line by line.
-    for (Phrase phrase : result.phrases) {
-      System.out.printf("%6f", phrase.score);
-      for (Token token : phrase.tokens) {
+    for (Phrase phrase : result.getPhrases()) {
+      System.out.printf("%6f", phrase.getScore());
+      for (Token token : phrase.getTokens()) {
         System.out.printf(" %s_%d", token.getText(), token.getTag().ordinal());
       }
       System.out.println();
