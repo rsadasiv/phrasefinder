@@ -1,12 +1,12 @@
-// This file is part of PhraseFinder.  http://phrasefinder.io
+// This file is part of PhraseFinder. http://phrasefinder.io
 //
-// Copyright (C) 2016-2017  Martin Trenkmann
+// Copyright (C) 2016-2017 Martin Trenkmann
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//    http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,14 +26,14 @@ import java.io.IOException;
 public final class Demo {
 
   public static void main(String[] args) {
-    
+
     // Set up your query.
     String query = "I like ???";
-    
+
     // Set the optional parameter topk to 10.
     Options options = new Options();
     options.setMaxResults(10);
-    
+
     // Perform a request.
     Result result;
     try {
@@ -47,7 +47,7 @@ public final class Demo {
       System.out.println("Request was not successful: " + result.getStatus());
       return;
     }
-    
+
     // Print phrases line by line.
     for (Phrase phrase : result.getPhrases()) {
       System.out.printf("%6f", phrase.getScore());
