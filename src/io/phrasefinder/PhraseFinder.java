@@ -237,9 +237,7 @@ public final class PhraseFinder {
     switch (httpResponseCode) {
       case 200: return Status.OK;
       case 400: return Status.BAD_REQUEST;
-      case 402: return Status.PAYMENT_REQUIRED;
       case 405: return Status.METHOD_NOT_ALLOWED;
-      case 429: return Status.TOO_MANY_REQUESTS;
       case 500: return Status.SERVER_ERROR;
       default:  throw new IllegalArgumentException();
     }
