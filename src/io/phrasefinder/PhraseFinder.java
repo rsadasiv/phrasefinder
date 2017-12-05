@@ -163,12 +163,6 @@ public final class PhraseFinder {
      * responses.
      */
     public int topk = 100;
-
-    /**
-     * The API key if you own one. Requests without an API key will be accounted to the daily free
-     * quota associated with the IP address of the client.
-     */
-    public String key = null;
   }
   
   /**
