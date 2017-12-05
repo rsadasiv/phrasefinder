@@ -273,9 +273,6 @@ public final class PhraseFinder {
       .append("&nmin=").append(options.nmin)
       .append("&nmax=").append(options.nmax)
       .append("&topk=").append(options.topk);
-    if (options.key != null) {
-      sb.append("&key=").append(options.key);
-    }
     return new URL(sb.toString());
   }
   
