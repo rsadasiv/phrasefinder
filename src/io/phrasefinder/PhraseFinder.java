@@ -70,7 +70,7 @@ public final class PhraseFinder {
    * correspond to the original HTTP code.
    */
   public static enum Status {
-    /** The request was successful and the response body contains the result. */
+    /** The request was successful and the response body contains the result. **/
     OK,
 
     /**
@@ -79,20 +79,8 @@ public final class PhraseFinder {
      */
     BAD_REQUEST,
 
-    /**
-     * The request contained an API key, but that key was either unknown or the associated quota has
-     * been consumed already.
-     */
-    PAYMENT_REQUIRED,
-
     /** The request method was something other than GET. */
     METHOD_NOT_ALLOWED,
-
-    /**
-     * The request did not contain an API key and the daily free quota associated with the IP
-     * address has been consumed already.
-     */
-    TOO_MANY_REQUESTS,
 
     /** The server needs a break. Please try again later. */
     SERVER_ERROR
