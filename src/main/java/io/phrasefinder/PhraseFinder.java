@@ -28,16 +28,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class PhraseFinder provides routines for querying the
- * <a href="http://phrasefinder.io">PhraseFinder</a> web service. Class
- * <a href="https://github.com/mtrenkmann/phrasefinder-client-java/blob/master/src/Demo.java"
- * >Demo</a> shows a usage example.
+ * The PhraseFinder class provides (static) routines for querying the
+ * <a href="http://phrasefinder.io">PhraseFinder</a> web service.
+ * 
+ * @see PhraseFinder#search(String)
+ * @see PhraseFinder#search(String, Options)
  */
 public final class PhraseFinder {
 
   /**
-   * Corpus is a numeric type that represents a corpus to be searched. All corpora belong to version
-   * 2 of the <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html"> Google
+   * Corpus is an enum type that represents a corpus to be searched. All corpora belong to version
+   * 2 of the <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Google
    * Books Ngram Dataset</a>.
    */
   public static enum Corpus {
@@ -46,25 +47,19 @@ public final class PhraseFinder {
 
   /**
    * Status is a type that reports whether a request was successful or not. The value is derived
-   * from the HTTP status code sent along with a response. Note that the numeric value does not
-   * correspond to the original HTTP code.
+   * from the HTTP status code sent along with a response. Note that {@link Status#ordinal()} does
+   * not correspond to the original HTTP code.
    */
   public static enum Status {
     /**
-     * The request was successful and the response body contains the result.
+     * The request was successful.
      */
     OK,
 
     /**
-     * A required parameter was missing or a parameter had an invalid value (wrong string or
-     * out-of-range number).
+     * A required parameter was missing or a parameter had an invalid value.
      */
     BAD_REQUEST,
-
-    /**
-     * The request method was something other than GET.
-     */
-    METHOD_NOT_ALLOWED,
 
     /**
      * The server needs a break. Please try again later.
@@ -283,9 +278,11 @@ public final class PhraseFinder {
       return phrases;
     }
   }
+  
+  private PhraseFinder() {}
 
   /**
-   * Sends a request to the server with all optional parameters set to default.
+   * Sends a request with default parameters.
    * 
    * @param query is the query string.
    * @return A {@link Result} object whose {@link Result#status} field is equal to {@link Status#OK}
