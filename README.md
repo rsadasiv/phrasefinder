@@ -95,7 +95,7 @@ cd phrasefinder-client-java
 javac src/main/java/io/phrasefinder/PhraseFinder.java src/main/java/io/phrasefinder/examples/Example.java
 java -cp src/main/java io.phrasefinder.examples.Example
 
-// Delete class files
+# Delete class files.
 rm src/main/java/io/phrasefinder/PhraseFinder*.class src/main/java/io/phrasefinder/examples/Example.class
 ```
 
