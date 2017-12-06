@@ -41,30 +41,30 @@ You can either copy the single source file `src/main/java/io/phrasefinder/Phrase
 ## Example
 
 ```java
+import java.io.IOException;
+
 import io.phrasefinder.PhraseFinder;
-import io.phrasefinder.PhraseFinder.Options;
+import io.phrasefinder.PhraseFinder.Params;
 import io.phrasefinder.PhraseFinder.Phrase;
 import io.phrasefinder.PhraseFinder.Result;
 import io.phrasefinder.PhraseFinder.Status;
 import io.phrasefinder.PhraseFinder.Token;
 
-import java.io.IOException;
-
-public final class Demo {
+public final class Example {
 
   public static void main(String[] args) {
 
     // Set up your query.
     String query = "I struggled ???";
 
-    // Set the maximum number of phrases to return (optional).
-    Options options = new Options();
-    options.setMaxResults(10);
+    // Optional: set the maximum number of phrases to return.
+    Params params = new Params();
+    params.setMaxResults(10);
 
     // Send the request.
     Result result;
     try {
-      result = PhraseFinder.search(query, options);
+      result = PhraseFinder.search(query, params);
     } catch (IOException e) {
       e.printStackTrace();
       return;
