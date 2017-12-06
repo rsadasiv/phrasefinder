@@ -100,11 +100,6 @@ public final class PhraseFinder {
     private Tag tag;
     private String text;
 
-    public Token(Tag tag, String text) {
-      this.tag = tag;
-      this.text = text;
-    }
-
     /**
      * Returns the token's tag.
      */
@@ -188,7 +183,7 @@ public final class PhraseFinder {
    * Params represents parameters that can be sent along with a query.
    */
   public static class Params {
-    
+
     private static final Params DEFAULT_INSTANCE = new Params();
 
     private Corpus corpus = Corpus.AMERICAN_ENGLISH;
@@ -305,37 +300,37 @@ public final class PhraseFinder {
    */
   public static Result search(String query, Params params) throws IOException {
     HttpURLConnection connection = (HttpURLConnection) toUrl(query, params).openConnection();
-    Result response = new Result();
-    response.status = toStatus(connection.getResponseCode());
-    if (response.status == Status.OK) {
+    Result result = new Result();
+    result.status = toStatus(connection.getResponseCode());
+    if (result.status == Status.OK) {
       try (BufferedReader reader =
           new BufferedReader(new InputStreamReader(connection.getInputStream(),
               java.nio.charset.StandardCharsets.UTF_8))) {
         String line = null;
         List<Phrase> phrases = new ArrayList<>();
         while ((line = reader.readLine()) != null) {
-          String[] parts = line.split("\t");
-          String[] terms = parts[0].split(" ");
-          Token[] tokens = new Token[terms.length];
-          for (int i = 0; i < terms.length; i++) {
-            int termLength = terms[i].length();
-            tokens[i] = new Token(toTag(Integer.parseInt(terms[i].substring(termLength - 1))),
-                terms[i].substring(0, termLength - 2));
-          }
+          String[] fields = line.split("\t");
+          String[] tokens = fields[0].split(" ");
           Phrase phrase = new Phrase();
-          phrase.tokens = tokens;
-          phrase.matchCount = Long.parseLong(parts[1]);
-          phrase.volumeCount = Integer.parseInt(parts[2]);
-          phrase.firstYear = Integer.parseInt(parts[3]);
-          phrase.lastYear = Integer.parseInt(parts[4]);
-          phrase.relativeId = Integer.parseInt(parts[5]);
-          phrase.score = Double.parseDouble(parts[6]);
+          phrase.tokens = new Token[tokens.length];
+          for (int i = 0; i < tokens.length; i++) {
+            int tokenLength = tokens[i].length();
+            phrase.tokens[i] = new Token();
+            phrase.tokens[i].tag = toTag(Integer.parseInt(tokens[i].substring(tokenLength - 1)));
+            phrase.tokens[i].text = tokens[i].substring(0, tokenLength - 2);
+          }
+          phrase.matchCount = Long.parseLong(fields[1]);
+          phrase.volumeCount = Integer.parseInt(fields[2]);
+          phrase.firstYear = Integer.parseInt(fields[3]);
+          phrase.lastYear = Integer.parseInt(fields[4]);
+          phrase.relativeId = Integer.parseInt(fields[5]);
+          phrase.score = Double.parseDouble(fields[6]);
           phrases.add(phrase);
         }
-        response.phrases = phrases.toArray(new Phrase[0]);
+        result.phrases = phrases.toArray(new Phrase[0]);
       }
     }
-    return response;
+    return result;
   }
 
   private static Status toStatus(int httpResponseCode) {
@@ -344,9 +339,7 @@ public final class PhraseFinder {
         return Status.OK;
       case 400:
         return Status.BAD_REQUEST;
-      case 405:
-        return Status.METHOD_NOT_ALLOWED;
-      case 500:
+      case 502:
         return Status.BAD_GATEWAY;
       default:
         throw new IllegalArgumentException();
