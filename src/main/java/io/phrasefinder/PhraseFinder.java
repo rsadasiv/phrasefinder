@@ -32,23 +32,23 @@ import java.util.List;
  * <a href="http://phrasefinder.io">PhraseFinder</a> web service.
  * 
  * @see PhraseFinder#search(String)
- * @see PhraseFinder#search(String, Options)
+ * @see PhraseFinder#search(String, Params)
  */
 public final class PhraseFinder {
 
   /**
-   * Corpus is an enum type that represents a corpus to be searched. All corpora belong to version
-   * 2 of the <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Google
-   * Books Ngram Dataset</a>.
+   * Corpus is an enum type that represents a corpus to be searched. All corpora belong to version 2
+   * of the <a href="http://storage.googleapis.com/books/ngrams/books/datasetsv2.html">Google Books
+   * Ngram Dataset</a>.
    */
   public static enum Corpus {
     AMERICAN_ENGLISH, BRITISH_ENGLISH, CHINESE, FRENCH, GERMAN, RUSSIAN, SPANISH
   }
 
   /**
-   * Status is an enum type that reports whether a request was successful or not. The value is derived
-   * from the HTTP status code sent along with a response. Note that {@link Status#ordinal()} does
-   * not correspond to the original HTTP code.
+   * Status is an enum type that reports whether a request was successful or not. The value is
+   * derived from the HTTP status code sent along with a response. Note that
+   * {@link Status#ordinal()} does not correspond to the original HTTP code.
    */
   public static enum Status {
     /**
@@ -121,7 +121,7 @@ public final class PhraseFinder {
   }
 
   /**
-   * Phrase represents a phrase, also called n-gram. A phrase consists of a sequence of tokens and
+   * Phrase represents an n-gram from the dataset. A phrase consists of a sequence of tokens and
    * metadata.
    */
   public static class Phrase {
@@ -149,7 +149,7 @@ public final class PhraseFinder {
     }
 
     /**
-     * Returns the phrase's volume count which is the number of books the phrase appears in.
+     * Returns the phrase's volume count, which is the number of books the phrase appears in.
      */
     public int getVolumeCount() {
       return volumeCount;
@@ -185,9 +185,11 @@ public final class PhraseFinder {
   }
 
   /**
-   * Options represents optional parameters that can be sent along with a query.
+   * Params represents parameters that can be sent along with a query.
    */
-  public static class Options {
+  public static class Params {
+    
+    private static final Params DEFAULT_INSTANCE = new Params();
 
     private Corpus corpus = Corpus.AMERICAN_ENGLISH;
     private int minPhraseLength = 1;
@@ -278,33 +280,31 @@ public final class PhraseFinder {
       return phrases;
     }
   }
-  
+
   private PhraseFinder() {}
 
   /**
-   * Sends a request with default parameters.
+   * Sends a search request with default parameters.
    * 
    * @param query is the query string.
-   * @return A {@link Result} object whose {@link Result#status} field is equal to {@link Status#OK}
-   *         if the request was successful. In this case other fields of the object are in valid
-   *         state and can be read. Any status other than {@link Status#OK} indicates a failed
-   *         request. In that case other fields in the result have unspecified data.
+   * @return A {@link Result} object that contains matching phrases if {@link Result#getStatus()}
+   *         yields {@link Status#OK}. Any other status value is considered an unsuccessful request.
    * @throws IOException when sending the request or receiving the response failed.
    */
   public static Result search(String query) throws IOException {
-    return search(query, new Options());
+    return search(query, Params.DEFAULT_INSTANCE);
   }
 
   /**
-   * Sends a request to the server with parameters.
+   * Sends a search request with custom parameters.
    * 
    * @param query is the query string.
-   * @param options are the parameters.
+   * @param params are additional request parameters.
    * @return Same as {@link #search(String)}
    * @throws IOException Same as {@link #search(String)}
    */
-  public static Result search(String query, Options options) throws IOException {
-    HttpURLConnection connection = (HttpURLConnection) toUrl(query, options).openConnection();
+  public static Result search(String query, Params params) throws IOException {
+    HttpURLConnection connection = (HttpURLConnection) toUrl(query, params).openConnection();
     Result response = new Result();
     response.status = toStatus(connection.getResponseCode());
     if (response.status == Status.OK) {
@@ -381,7 +381,7 @@ public final class PhraseFinder {
     throw new IllegalArgumentException();
   }
 
-  private static URL toUrl(String query, Options options)
+  private static URL toUrl(String query, Params options)
       throws UnsupportedEncodingException, MalformedURLException {
     StringBuilder sb = new StringBuilder();
     sb.append("http://phrasefinder.io/search?format=tsv");
