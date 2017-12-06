@@ -62,9 +62,9 @@ public final class PhraseFinder {
     BAD_REQUEST,
 
     /**
-     * The server needs a break. Please try again later.
+     * The service is currently down. Please try again later.
      */
-    SERVER_ERROR
+    BAD_GATEWAY
   }
 
   /**
@@ -347,7 +347,7 @@ public final class PhraseFinder {
       case 405:
         return Status.METHOD_NOT_ALLOWED;
       case 500:
-        return Status.SERVER_ERROR;
+        return Status.BAD_GATEWAY;
       default:
         throw new IllegalArgumentException();
     }
