@@ -46,7 +46,7 @@ public final class PhraseFinder {
   }
 
   /**
-   * Status is a type that reports whether a request was successful or not. The value is derived
+   * Status is an enum type that reports whether a request was successful or not. The value is derived
    * from the HTTP status code sent along with a response. Note that {@link Status#ordinal()} does
    * not correspond to the original HTTP code.
    */
@@ -73,11 +73,11 @@ public final class PhraseFinder {
   public static class Token {
 
     /**
-     * Tag denotes the role of a token with respect to the query.
+     * Tag is an enum type that denotes the role of a token with respect to the query.
      */
     public static enum Tag {
       /**
-       * The token was given as part of the query.
+       * The token was given as part of the query string.
        */
       GIVEN,
 
