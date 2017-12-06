@@ -35,6 +35,11 @@ import java.util.List;
  * @see PhraseFinder#search(String, Params)
  */
 public final class PhraseFinder {
+  
+  /**
+   * The url to send search requests to.
+   */
+  public static final String BASE_URL = "http://phrasefinder.io/search";
 
   /**
    * Corpus is an enum type that represents a corpus to be searched. All corpora belong to version 2
@@ -377,7 +382,7 @@ public final class PhraseFinder {
   private static URL toUrl(String query, Params options)
       throws UnsupportedEncodingException, MalformedURLException {
     StringBuilder sb = new StringBuilder();
-    sb.append("http://phrasefinder.io/search?format=tsv");
+    sb.append(BASE_URL).append("?format=tsv");
     sb.append("&query=")
         .append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
     sb.append("&corpus=").append(toString(options.getCorpus()));
