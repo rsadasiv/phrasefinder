@@ -35,7 +35,7 @@ import java.util.List;
  * @see PhraseFinder#search(String, Params)
  */
 public final class PhraseFinder {
-  
+
   /**
    * The url to send search requests to.
    */
@@ -379,16 +379,15 @@ public final class PhraseFinder {
     throw new IllegalArgumentException();
   }
 
-  private static URL toUrl(String query, Params options)
+  private static URL toUrl(String query, Params params)
       throws UnsupportedEncodingException, MalformedURLException {
     StringBuilder sb = new StringBuilder();
-    sb.append(BASE_URL).append("?format=tsv");
-    sb.append("&query=")
-        .append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
-    sb.append("&corpus=").append(toString(options.getCorpus()));
-    sb.append("&nmin=").append(options.getMinPhraseLength());
-    sb.append("&nmax=").append(options.getMaxPhraseLength());
-    sb.append("&topk=").append(options.getMaxResults());
+    sb.append(BASE_URL).append("?format=tsv&query=");
+    sb.append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
+    sb.append("&corpus=").append(toString(params.getCorpus()));
+    sb.append("&nmin=").append(params.getMinPhraseLength());
+    sb.append("&nmax=").append(params.getMaxPhraseLength());
+    sb.append("&topk=").append(params.getMaxResults());
     return new URL(sb.toString());
   }
 }
