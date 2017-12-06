@@ -92,13 +92,11 @@ public final class Example {
 ```sh
 git clone https://github.com/mtrenkmann/phrasefinder-client-java.git
 cd phrasefinder-client-java
-javac src/main/java/io/phrasefinder/PhraseFinder.java \
-      src/main/java/io/phrasefinder/examples/Example.java
+javac src/main/java/io/phrasefinder/PhraseFinder.java src/main/java/io/phrasefinder/examples/Example.java
 java -cp src/main/java io.phrasefinder.examples.Example
 
 // Delete class files
-rm src/main/java/io/phrasefinder/PhraseFinder*.class \
-   src/main/java/io/phrasefinder/examples/Example.class
+rm src/main/java/io/phrasefinder/PhraseFinder*.class src/main/java/io/phrasefinder/examples/Example.class
 ```
 
 ### Output
