@@ -213,7 +213,7 @@ public final class PhraseFinder {
      * Sets the corpus to be searched. Defaults to {@link Corpus#AMERICAN_ENGLISH} if not set.
      */
     public void setCorpus(Corpus corpus) {
-      Require.notNull(corpus);
+      Assertions.assertNotNull(corpus);
       this.corpus = corpus;
     }
 
@@ -230,7 +230,7 @@ public final class PhraseFinder {
      * set. Defaults to 1 if not set.
      */
     public void setMinPhraseLength(int minPhraseLength) {
-      Require.inRange(minPhraseLength, Phrase.MIN_TOKEN_COUNT, Phrase.MAX_TOKEN_COUNT);
+      Assertions.assertInRange(minPhraseLength, Phrase.MIN_TOKEN_COUNT, Phrase.MAX_TOKEN_COUNT);
       this.minPhraseLength = minPhraseLength;
     }
 
@@ -247,7 +247,7 @@ public final class PhraseFinder {
      * set. Defaults to 5 if not set.
      */
     public void setMaxPhraseLength(int maxPhraseLength) {
-      Require.inRange(maxPhraseLength, Phrase.MIN_TOKEN_COUNT, Phrase.MAX_TOKEN_COUNT);
+      Assertions.assertInRange(maxPhraseLength, Phrase.MIN_TOKEN_COUNT, Phrase.MAX_TOKEN_COUNT);
       this.maxPhraseLength = maxPhraseLength;
     }
 
@@ -263,7 +263,7 @@ public final class PhraseFinder {
      * faster response times. Defaults to 100 if not set.
      */
     public void setMaxResults(int maxResults) {
-      Require.greaterEqual(maxResults, 0);
+      Assertions.assertGreaterEqual(maxResults, 0);
       this.maxResults = maxResults;
     }
   }
@@ -346,33 +346,33 @@ public final class PhraseFinder {
     return result;
   }
 
-  private static final class Require {
+  private static final class Assertions {
 
-    public static void notNull(Object object) {
+    public static void assertNotNull(Object object) {
       Objects.requireNonNull(object);
     }
 
-    public static void lessThan(int a, int b) {
+    public static void assertLessThan(int a, int b) {
       if (!(a < b)) {
         throw new IllegalArgumentException(String.format("%d is not less than %d", a, b));
       }
     }
 
-    public static void lessEqual(int a, int b) {
+    public static void assertLessEqual(int a, int b) {
       if (!(a <= b)) {
         throw new IllegalArgumentException(String.format("%d is not less equal than %d", a, b));
       }
     }
 
-    public static void greaterEqual(int a, int b) {
+    public static void assertGreaterEqual(int a, int b) {
       if (!(a >= b)) {
         throw new IllegalArgumentException(String.format("%d is not greater equal to %d", a, b));
       }
     }
 
-    public static void inRange(int value, int minValue, int maxValue) {
-      greaterEqual(value, minValue);
-      lessEqual(value, maxValue);
+    public static void assertInRange(int value, int minValue, int maxValue) {
+      assertGreaterEqual(value, minValue);
+      assertLessEqual(value, maxValue);
     }
   }
 
@@ -412,14 +412,14 @@ public final class PhraseFinder {
   }
 
   private static Token.Tag toTag(int value) {
-    Require.lessThan(value, Token.Tag.values().length);
+    Assertions.assertLessThan(value, Token.Tag.values().length);
     return Token.Tag.values()[value];
   }
 
   private static URL toUrl(String query, Params params)
       throws UnsupportedEncodingException, MalformedURLException {
-    Require.notNull(query);
-    Require.notNull(params);
+    Assertions.assertNotNull(query);
+    Assertions.assertNotNull(params);
     StringBuilder sb = new StringBuilder();
     sb.append(BASE_URL).append("?format=tsv&query=");
     sb.append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
