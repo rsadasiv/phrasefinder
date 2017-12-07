@@ -36,6 +36,8 @@ import java.util.List;
  */
 public final class PhraseFinder {
 
+  private PhraseFinder() {}
+  
   /**
    * The url to send search requests to.
    */
@@ -280,8 +282,6 @@ public final class PhraseFinder {
       return phrases;
     }
   }
-
-  private PhraseFinder() {}
 
   /**
    * Sends a search request with default parameters.
