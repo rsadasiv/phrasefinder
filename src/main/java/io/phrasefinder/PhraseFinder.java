@@ -26,6 +26,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The PhraseFinder class provides (static) routines for querying the
@@ -37,7 +38,7 @@ import java.util.List;
 public final class PhraseFinder {
 
   private PhraseFinder() {}
-  
+
   /**
    * The url to send search requests to.
    */
@@ -128,6 +129,9 @@ public final class PhraseFinder {
    */
   public static class Phrase {
 
+    public static final int MIN_TOKEN_COUNT = 1;
+    public static final int MAX_TOKEN_COUNT = 5;
+
     private Token[] tokens;
     private long matchCount;
     private int volumeCount;
@@ -209,6 +213,7 @@ public final class PhraseFinder {
      * Sets the corpus to be searched. Defaults to {@link Corpus#AMERICAN_ENGLISH} if not set.
      */
     public void setCorpus(Corpus corpus) {
+      Require.notNull(corpus);
       this.corpus = corpus;
     }
 
@@ -225,6 +230,7 @@ public final class PhraseFinder {
      * set. Defaults to 1 if not set.
      */
     public void setMinPhraseLength(int minPhraseLength) {
+      Require.inRange(minPhraseLength, Phrase.MIN_TOKEN_COUNT, Phrase.MAX_TOKEN_COUNT);
       this.minPhraseLength = minPhraseLength;
     }
 
@@ -241,6 +247,7 @@ public final class PhraseFinder {
      * set. Defaults to 5 if not set.
      */
     public void setMaxPhraseLength(int maxPhraseLength) {
+      Require.inRange(maxPhraseLength, Phrase.MIN_TOKEN_COUNT, Phrase.MAX_TOKEN_COUNT);
       this.maxPhraseLength = maxPhraseLength;
     }
 
@@ -256,6 +263,7 @@ public final class PhraseFinder {
      * faster response times. Defaults to 100 if not set.
      */
     public void setMaxResults(int maxResults) {
+      Require.greaterEqual(maxResults, 0);
       this.maxResults = maxResults;
     }
   }
@@ -338,6 +346,36 @@ public final class PhraseFinder {
     return result;
   }
 
+  private static final class Require {
+
+    public static void notNull(Object object) {
+      Objects.requireNonNull(object);
+    }
+
+    public static void lessThan(int a, int b) {
+      if (!(a < b)) {
+        throw new IllegalArgumentException(String.format("%d is not less than %d", a, b));
+      }
+    }
+
+    public static void lessEqual(int a, int b) {
+      if (!(a <= b)) {
+        throw new IllegalArgumentException(String.format("%d is not less equal than %d", a, b));
+      }
+    }
+
+    public static void greaterEqual(int a, int b) {
+      if (!(a >= b)) {
+        throw new IllegalArgumentException(String.format("%d is not greater equal to %d", a, b));
+      }
+    }
+
+    public static void inRange(int value, int minValue, int maxValue) {
+      greaterEqual(value, minValue);
+      lessEqual(value, maxValue);
+    }
+  }
+
   private static Status toStatus(int httpResponseCode) {
     switch (httpResponseCode) {
       case 200:
@@ -347,7 +385,8 @@ public final class PhraseFinder {
       case 502:
         return Status.BAD_GATEWAY;
       default:
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(
+            String.format("Unexpected HTTP status code: %d", httpResponseCode));
     }
   }
 
@@ -373,14 +412,14 @@ public final class PhraseFinder {
   }
 
   private static Token.Tag toTag(int value) {
-    if (value < Token.Tag.values().length) {
-      return Token.Tag.values()[value];
-    }
-    throw new IllegalArgumentException();
+    Require.lessThan(value, Token.Tag.values().length);
+    return Token.Tag.values()[value];
   }
 
   private static URL toUrl(String query, Params params)
       throws UnsupportedEncodingException, MalformedURLException {
+    Require.notNull(query);
+    Require.notNull(params);
     StringBuilder sb = new StringBuilder();
     sb.append(BASE_URL).append("?format=tsv&query=");
     sb.append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
