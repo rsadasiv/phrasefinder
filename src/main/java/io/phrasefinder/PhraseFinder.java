@@ -197,25 +197,9 @@ public final class PhraseFinder {
 
     private static final Options DEFAULT_INSTANCE = new Options();
 
-    private Corpus corpus = Corpus.AMERICAN_ENGLISH;
     private int minPhraseLength = 1;
     private int maxPhraseLength = 5;
     private int maxResults = 100;
-
-    /**
-     * Returns the type of the corpus to be searched.
-     */
-    public Corpus getCorpus() {
-      return corpus;
-    }
-
-    /**
-     * Sets the corpus to be searched. Defaults to {@link Corpus#AMERICAN_ENGLISH} if not set.
-     */
-    public void setCorpus(Corpus corpus) {
-      Assertions.assertNotNull(corpus);
-      this.corpus = corpus;
-    }
 
     /**
      * Returns the minimum length of matching phrases (number of tokens) to be included in the
