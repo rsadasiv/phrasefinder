@@ -16,42 +16,41 @@
 
 package io.phrasefinder;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
+import io.phrasefinder.PhraseFinder.Corpus;
+import io.phrasefinder.PhraseFinder.Options;
+import io.phrasefinder.PhraseFinder.Result;
+
 class PhraseFinderTest {
+  
+  private static final String ENG_US_QUERY = "I struggled ???";
+  private static final String ENG_US_EXPECTED_PHRASE_0 = "I struggled to my feet";
+  private static final String ENG_US_EXPECTED_PHRASE_1 = "I struggled to keep my";
+  private static final String ENG_US_EXPECTED_PHRASE_2 = "I struggled to sit up";
 
-  /**
-   * Test method for {@link io.phrasefinder.PhraseFinder#search(java.lang.String)}.
-   */
   @Test
-  void testSearchString() {
-    fail("Not yet implemented");
+  void testSearchCorpusString() throws IOException {
+    Result result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, ENG_US_QUERY);
+    assertEquals(100, result.getPhrases().length);
+    assertEquals(ENG_US_EXPECTED_PHRASE_0, result.getPhrases()[0].toString());
+    assertEquals(ENG_US_EXPECTED_PHRASE_1, result.getPhrases()[1].toString());
+    assertEquals(ENG_US_EXPECTED_PHRASE_2, result.getPhrases()[2].toString());
   }
 
-  /**
-   * Test method for
-   * {@link io.phrasefinder.PhraseFinder#search(java.lang.String, io.phrasefinder.PhraseFinder.Params)}.
-   */
   @Test
-  void testSearchStringParams() {
-    fail("Not yet implemented");
-  }
-
-  /**
-   * Test method for {@link java.lang.Object#hashCode()}.
-   */
-  @Test
-  void testHashCode() {
-    fail("Not yet implemented");
-  }
-
-  /**
-   * Test method for {@link java.lang.Object#equals(java.lang.Object)}.
-   */
-  @Test
-  void testEquals() {
-    fail("Not yet implemented");
+  void testSearchCorpusStringOptions() throws IOException {
+    Options options = new Options();
+    options.setMaxResults(3);
+    Result result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, ENG_US_QUERY, options);
+    assertEquals(3, result.getPhrases().length);
+    assertEquals(ENG_US_EXPECTED_PHRASE_0, result.getPhrases()[0].toString());
+    assertEquals(ENG_US_EXPECTED_PHRASE_1, result.getPhrases()[1].toString());
+    assertEquals(ENG_US_EXPECTED_PHRASE_2, result.getPhrases()[2].toString());
   }
 
 }
