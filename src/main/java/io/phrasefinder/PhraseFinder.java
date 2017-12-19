@@ -137,7 +137,7 @@ public final class PhraseFinder {
     private int volumeCount;
     private int firstYear;
     private int lastYear;
-    private int relativeId;
+    private long id;
     private double score;
 
     /**
@@ -176,10 +176,10 @@ public final class PhraseFinder {
     }
 
     /**
-     * Returns the phrase's relative id.
+     * Returns the phrase's id which is unique among all corpora.
      */
-    public int getRelativeId() {
-      return relativeId;
+    public long getId() {
+      return id;
     }
 
     /**
@@ -323,7 +323,7 @@ public final class PhraseFinder {
           phrase.volumeCount = Integer.parseInt(fields[2]);
           phrase.firstYear = Integer.parseInt(fields[3]);
           phrase.lastYear = Integer.parseInt(fields[4]);
-          phrase.relativeId = Integer.parseInt(fields[5]);
+          phrase.id = Long.parseLong(fields[5]);
           phrase.score = Double.parseDouble(fields[6]);
           phrases.add(phrase);
         }
