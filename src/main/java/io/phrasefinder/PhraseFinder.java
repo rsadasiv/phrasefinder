@@ -33,7 +33,7 @@ import java.util.Objects;
  * <a href="http://phrasefinder.io">PhraseFinder</a> web service.
  * 
  * @see PhraseFinder#search(String)
- * @see PhraseFinder#search(String, Params)
+ * @see PhraseFinder#search(String, Options)
  */
 public final class PhraseFinder {
 
@@ -191,11 +191,11 @@ public final class PhraseFinder {
   }
 
   /**
-   * Params represents parameters that can be sent along with a query.
+   * Options represents optional parameters that can be sent along with a query.
    */
-  public static class Params {
+  public static class Options {
 
-    private static final Params DEFAULT_INSTANCE = new Params();
+    private static final Options DEFAULT_INSTANCE = new Options();
 
     private Corpus corpus = Corpus.AMERICAN_ENGLISH;
     private int minPhraseLength = 1;
@@ -300,19 +300,19 @@ public final class PhraseFinder {
    * @throws IOException when sending the request or receiving the response failed.
    */
   public static Result search(String query) throws IOException {
-    return search(query, Params.DEFAULT_INSTANCE);
+    return search(query, Options.DEFAULT_INSTANCE);
   }
 
   /**
    * Sends a search request with custom parameters.
    * 
    * @param query is the query string.
-   * @param params are additional request parameters.
+   * @param options are additional request parameters.
    * @return Same as {@link #search(String)}
    * @throws IOException Same as {@link #search(String)}
    */
-  public static Result search(String query, Params params) throws IOException {
-    HttpURLConnection connection = (HttpURLConnection) toUrl(query, params).openConnection();
+  public static Result search(String query, Options options) throws IOException {
+    HttpURLConnection connection = (HttpURLConnection) toUrl(query, options).openConnection();
     Result result = new Result();
     result.status = toStatus(connection.getResponseCode());
     if (result.status == Status.OK) {
@@ -416,17 +416,17 @@ public final class PhraseFinder {
     return Token.Tag.values()[value];
   }
 
-  private static URL toUrl(String query, Params params)
+  private static URL toUrl(String query, Options options)
       throws UnsupportedEncodingException, MalformedURLException {
     Assertions.assertNotNull(query);
-    Assertions.assertNotNull(params);
+    Assertions.assertNotNull(options);
     StringBuilder sb = new StringBuilder();
     sb.append(BASE_URL).append("?format=tsv&query=");
     sb.append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
-    sb.append("&corpus=").append(toString(params.getCorpus()));
-    sb.append("&nmin=").append(params.getMinPhraseLength());
-    sb.append("&nmax=").append(params.getMaxPhraseLength());
-    sb.append("&topk=").append(params.getMaxResults());
+    sb.append("&corpus=").append(toString(options.getCorpus()));
+    sb.append("&nmin=").append(options.getMinPhraseLength());
+    sb.append("&nmax=").append(options.getMaxPhraseLength());
+    sb.append("&topk=").append(options.getMaxResults());
     return new URL(sb.toString());
   }
 }

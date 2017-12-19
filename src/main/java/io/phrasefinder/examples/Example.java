@@ -19,7 +19,7 @@ package io.phrasefinder.examples;
 import java.io.IOException;
 
 import io.phrasefinder.PhraseFinder;
-import io.phrasefinder.PhraseFinder.Params;
+import io.phrasefinder.PhraseFinder.Options;
 import io.phrasefinder.PhraseFinder.Phrase;
 import io.phrasefinder.PhraseFinder.Result;
 import io.phrasefinder.PhraseFinder.Status;
@@ -33,7 +33,7 @@ public final class Example {
     String query = "I struggled ???";
 
     // Optional: set the maximum number of phrases to return.
-    Params params = new Params();
+    Options params = new Options();
     params.setMaxResults(10);
 
     // Send the request.
