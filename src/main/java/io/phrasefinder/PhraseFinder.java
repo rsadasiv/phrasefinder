@@ -294,25 +294,28 @@ public final class PhraseFinder {
   /**
    * Sends a search request with default parameters.
    * 
+   * @param corpus is the corpus to be searched.
    * @param query is the query string.
    * @return A {@link Result} object that contains matching phrases if {@link Result#getStatus()}
    *         yields {@link Status#OK}. Any other status value is considered an unsuccessful request.
    * @throws IOException when sending the request or receiving the response failed.
    */
-  public static Result search(String query) throws IOException {
-    return search(query, Options.DEFAULT_INSTANCE);
+  public static Result search(Corpus corpus, String query) throws IOException {
+    return search(corpus, query, Options.DEFAULT_INSTANCE);
   }
 
   /**
    * Sends a search request with custom parameters.
    * 
+   * @param corpus is the corpus to be searched.
    * @param query is the query string.
    * @param options are additional request parameters.
    * @return Same as {@link #search(String)}
    * @throws IOException Same as {@link #search(String)}
    */
-  public static Result search(String query, Options options) throws IOException {
-    HttpURLConnection connection = (HttpURLConnection) toUrl(query, options).openConnection();
+  public static Result search(Corpus corpus, String query, Options options) throws IOException {
+    HttpURLConnection connection =
+        (HttpURLConnection) toUrl(corpus, query, options).openConnection();
     Result result = new Result();
     result.status = toStatus(connection.getResponseCode());
     if (result.status == Status.OK) {
@@ -416,14 +419,15 @@ public final class PhraseFinder {
     return Token.Tag.values()[value];
   }
 
-  private static URL toUrl(String query, Options options)
+  private static URL toUrl(Corpus corpus, String query, Options options)
       throws UnsupportedEncodingException, MalformedURLException {
     Assertions.assertNotNull(query);
     Assertions.assertNotNull(options);
     StringBuilder sb = new StringBuilder();
-    sb.append(BASE_URL).append("?format=tsv&query=");
-    sb.append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
-    sb.append("&corpus=").append(toString(options.getCorpus()));
+    sb.append(BASE_URL).append("?format=tsv");
+    sb.append("&corpus=").append(toString(corpus));
+    sb.append("&query=")
+        .append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
     sb.append("&nmin=").append(options.getMinPhraseLength());
     sb.append("&nmax=").append(options.getMaxPhraseLength());
     sb.append("&topk=").append(options.getMaxResults());
