@@ -25,8 +25,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * The PhraseFinder class provides (static) routines for querying the
@@ -139,6 +141,11 @@ public final class PhraseFinder {
     private int lastYear;
     private long id;
     private double score;
+
+    @Override
+    public String toString() {
+      return Arrays.stream(tokens).map(t -> t.text).collect(Collectors.joining(" "));
+    }
 
     /**
      * Returns the phrase's tokens.
