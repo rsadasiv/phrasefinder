@@ -22,10 +22,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import io.phrasefinder.PhraseFinder.Corpus;
-import io.phrasefinder.PhraseFinder.Options;
-import io.phrasefinder.PhraseFinder.Result;
-
 class PhraseFinderTest {
   
   private static final String ENG_US_QUERY = "I struggled ???";
