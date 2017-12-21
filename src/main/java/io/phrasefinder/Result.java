@@ -47,11 +47,11 @@ public class Result {
     protected static Status fromHttpStatusCode(int httpStatusCode) {
       switch (httpStatusCode) {
         case 200:
-          return Status.OK;
+          return OK;
         case 400:
-          return Status.BAD_REQUEST;
+          return BAD_REQUEST;
         case 502:
-          return Status.BAD_GATEWAY;
+          return BAD_GATEWAY;
         default:
           throw new IllegalArgumentException(
               String.format("Unexpected HTTP status code: %d", httpStatusCode));
