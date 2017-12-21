@@ -18,13 +18,13 @@ package io.phrasefinder.examples;
 
 import java.io.IOException;
 
+import io.phrasefinder.Corpus;
+import io.phrasefinder.Options;
+import io.phrasefinder.Phrase;
+import io.phrasefinder.Phrase.Token;
 import io.phrasefinder.PhraseFinder;
-import io.phrasefinder.PhraseFinder.Corpus;
-import io.phrasefinder.PhraseFinder.Options;
-import io.phrasefinder.PhraseFinder.Phrase;
-import io.phrasefinder.PhraseFinder.Result;
-import io.phrasefinder.PhraseFinder.Status;
-import io.phrasefinder.PhraseFinder.Token;
+import io.phrasefinder.Result;
+import io.phrasefinder.Result.Status;
 
 public final class Example {
 
