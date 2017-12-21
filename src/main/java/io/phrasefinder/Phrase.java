@@ -124,6 +124,8 @@ public class Phrase {
   protected double score;
   protected long id;
 
+  protected Phrase() {}
+  
   @Override
   public int hashCode() {
     return (int) (id ^ (id >>> 32));
