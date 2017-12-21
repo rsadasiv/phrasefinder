@@ -35,7 +35,8 @@ The .jar file will be placed in the `target` directory.
 
 ## Installation without Maven
 
-You can either copy the single source file `src/main/java/io/phrasefinder/Phrasefinder.java` into your own Java project, or download a pre-build .jar file from the release page of this repository.
+Download the latest `.jar` file from the release page of this repository and add it to your
+project's classpath.
 
 
 ## Example
@@ -43,12 +44,13 @@ You can either copy the single source file `src/main/java/io/phrasefinder/Phrase
 ```java
 import java.io.IOException;
 
+import io.phrasefinder.Corpus;
+import io.phrasefinder.Options;
+import io.phrasefinder.Phrase;
+import io.phrasefinder.Phrase.Token;
 import io.phrasefinder.PhraseFinder;
-import io.phrasefinder.PhraseFinder.Params;
-import io.phrasefinder.PhraseFinder.Phrase;
-import io.phrasefinder.PhraseFinder.Result;
-import io.phrasefinder.PhraseFinder.Status;
-import io.phrasefinder.PhraseFinder.Token;
+import io.phrasefinder.Result;
+import io.phrasefinder.Result.Status;
 
 public final class Example {
 
@@ -58,13 +60,13 @@ public final class Example {
     String query = "I struggled ???";
 
     // Optional: set the maximum number of phrases to return.
-    Params params = new Params();
-    params.setMaxResults(10);
+    Options options = new Options();
+    options.setMaxResults(10);
 
     // Send the request.
     Result result;
     try {
-      result = PhraseFinder.search(query, params);
+      result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, query, options);
     } catch (IOException e) {
       e.printStackTrace();
       return;
@@ -92,7 +94,7 @@ public final class Example {
 ```sh
 git clone https://github.com/mtrenkmann/phrasefinder-client-java.git
 cd phrasefinder-client-java
-javac src/main/java/io/phrasefinder/PhraseFinder.java src/main/java/io/phrasefinder/examples/Example.java
+javac src/main/java/io/phrasefinder/*.java src/main/java/io/phrasefinder/examples/Example.java
 java -cp src/main/java io.phrasefinder.examples.Example
 
 # Delete class files.
