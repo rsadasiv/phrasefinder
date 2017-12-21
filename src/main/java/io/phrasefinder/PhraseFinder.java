@@ -48,6 +48,7 @@ public final class PhraseFinder {
   public static final String BASE_URL = "http://phrasefinder.io/search";
 
   private static final Options DEFAULT_OPTIONS = new Options();
+  private static final Phrase[] EMPTY_PHRASES = new Phrase[0];
 
   /**
    * Sends a search request with default parameters.
@@ -75,9 +76,8 @@ public final class PhraseFinder {
   public static Result search(Corpus corpus, String query, Options options) throws IOException {
     HttpURLConnection connection =
         (HttpURLConnection) makeUrl(corpus, query, options).openConnection();
-    Result result = new Result();
-    result.status = Status.fromHttpStatusCode(connection.getResponseCode());
-    if (result.status == Status.OK) {
+    Status status = Status.fromHttpStatusCode(connection.getResponseCode());
+    if (status == Status.OK) {
       try (BufferedReader reader =
           new BufferedReader(new InputStreamReader(connection.getInputStream(),
               java.nio.charset.StandardCharsets.UTF_8))) {
@@ -102,10 +102,10 @@ public final class PhraseFinder {
           phrase.score = Double.parseDouble(fields[6]);
           phrases.add(phrase);
         }
-        result.phrases = phrases.toArray(new Phrase[0]);
+        return new Result(status, phrases.toArray(EMPTY_PHRASES));
       }
     }
-    return result;
+    return new Result(status, EMPTY_PHRASES);
   }
 
   private static URL makeUrl(Corpus corpus, String query, Options options)
