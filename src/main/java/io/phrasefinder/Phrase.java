@@ -20,8 +20,10 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
- * Phrase represents an n-gram from the dataset. A phrase consists of a sequence of tokens and
- * metadata.
+ * Phrase represents an n-gram from the dataset. For this reason, objects of this class cannot be
+ * constructed by the user (there are no public constructors) and objects returned from a request
+ * are immutable (there are no public setter methods). Client code that needs a mutable phrase
+ * object is required to introduce its own Phrase class.
  */
 public class Phrase {
 
@@ -115,9 +117,28 @@ public class Phrase {
   protected int lastYear;
   protected double score;
   protected long id;
-  
-  
-  
+
+  @Override
+  public int hashCode() {
+    return (int) (id ^ (id >>> 32));
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Phrase other = (Phrase) obj;
+    if (id != other.id)
+      return false;
+    if (!Arrays.equals(tokens, other.tokens))
+      return false;
+    return true;
+  }
+
   @Override
   public String toString() {
     return Arrays.stream(tokens).map(t -> t.text).collect(Collectors.joining(" "));
