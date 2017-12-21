@@ -21,7 +21,7 @@ Then, add the following dependency to the `pom.xml` of your own Maven managed pr
 <dependency>
   <groupId>io.phrasefinder</groupId>
   <artifactId>phrasefinder</artifactId>
-  <version>0.3.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
