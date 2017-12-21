@@ -9,7 +9,7 @@
 
 The PhraseFinder client library for Java is build using Maven, which can be installed from your operating system's package manager or downloaded from <http://maven.apache.org/>.
 
-To build and install the library into your local Maven repository, run
+To build and install the library into your local Maven repository, run:
 
 ```sh
 mvn install
@@ -25,7 +25,7 @@ Then, add the following dependency to the `pom.xml` of your own Maven managed pr
 </dependency>
 ```
 
-Alternatively, if you want to build a .jar file without installing it, run
+Alternatively, if you want to build a .jar file without installing it, run:
 
 ```sh
 mvn package
