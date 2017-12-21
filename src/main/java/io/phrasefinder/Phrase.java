@@ -192,5 +192,12 @@ public class Phrase {
   public long getId() {
     return id;
   }
+  
+  /**
+   * Returns the corpus the phrase belongs to.
+   */
+  public Corpus getCorpus() {
+    return Corpus.fromOrdinal(0xFF & (int) (id >>> 32));
+  }
 
 }
