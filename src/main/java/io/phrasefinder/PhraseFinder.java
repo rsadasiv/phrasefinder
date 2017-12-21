@@ -115,9 +115,15 @@ public final class PhraseFinder {
     sb.append("&corpus=").append(corpus.shortName());
     sb.append("&query=")
         .append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
-    sb.append("&nmin=").append(options.getMinPhraseLength());
-    sb.append("&nmax=").append(options.getMaxPhraseLength());
-    sb.append("&topk=").append(options.getMaxResults());
+    if (options.getMinPhraseLength() != DEFAULT_OPTIONS.getMinPhraseLength()) {
+      sb.append("&nmin=").append(options.getMinPhraseLength());
+    }
+    if (options.getMaxPhraseLength() != DEFAULT_OPTIONS.getMaxPhraseLength()) {
+      sb.append("&nmax=").append(options.getMaxPhraseLength());
+    }
+    if (options.getMaxResults() != DEFAULT_OPTIONS.getMaxResults()) {
+      sb.append("&topk=").append(options.getMaxResults());
+    }
     return new URL(sb.toString());
   }
 
