@@ -43,7 +43,7 @@ public final class PhraseFinder {
   private PhraseFinder() {}
 
   /**
-   * The url to send search requests to.
+   * The URL to send search requests to.
    */
   public static final String BASE_URL = "http://phrasefinder.io/search";
 
