@@ -23,15 +23,60 @@ package io.phrasefinder;
  */
 public enum Corpus {
 
-  AMERICAN_ENGLISH, BRITISH_ENGLISH, CHINESE, FRENCH, GERMAN, RUSSIAN, SPANISH;
+  /**
+   * American English
+   */
+  AMERICAN_ENGLISH,
 
+  /**
+   * British English
+   */
+  BRITISH_ENGLISH,
+
+  /**
+   * Chinese (simplified)
+   */
+  CHINESE,
+
+  /**
+   * French
+   */
+  FRENCH,
+
+  /**
+   * German
+   */
+  GERMAN,
+
+  /**
+   * Russian
+   */
+  RUSSIAN,
+
+  /**
+   * Spanish
+   */
+  SPANISH;
+
+  /**
+   * Returns the enum constant of this type with the specified ordinal number.
+   * 
+   * @param ordinal the ordinal number of the enum constant to be returned.
+   * @return the enum constant with the specified ordinal number
+   */
   public static Corpus fromOrdinal(int ordinal) {
     if (ordinal >= 0 && ordinal < values().length) {
       return values()[ordinal];
     }
-    throw new IllegalArgumentException("Invalid ordinal");
+    throw new IllegalArgumentException("Invalid ordinal number");
   }
 
+  /**
+   * Returns the short name of this enum constant as used as the value for the <code>corpus</code>
+   * URL parameter.
+   * 
+   * @return the short name of this enum constant
+   */
   public String shortName() {
     switch (this) {
       case AMERICAN_ENGLISH:
