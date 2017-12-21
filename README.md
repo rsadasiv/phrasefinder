@@ -98,7 +98,7 @@ javac src/main/java/io/phrasefinder/*.java src/main/java/io/phrasefinder/example
 java -cp src/main/java io.phrasefinder.examples.Example
 
 # Delete class files.
-rm src/main/java/io/phrasefinder/PhraseFinder*.class src/main/java/io/phrasefinder/examples/Example.class
+rm src/main/java/io/phrasefinder/*.class src/main/java/io/phrasefinder/examples/Example.class
 ```
 
 ### Output
