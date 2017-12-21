@@ -77,8 +77,8 @@ public class Phrase {
     public int hashCode() {
       final int prime = 31;
       int result = 1;
-      result = prime * result + ((tag == null) ? 0 : tag.hashCode());
-      result = prime * result + ((text == null) ? 0 : text.hashCode());
+      result = prime * result + tag.hashCode();
+      result = prime * result + text.hashCode();
       return result;
     }
 
