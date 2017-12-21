@@ -33,7 +33,7 @@ public class Result {
     OK,
 
     /**
-     * A required parameter was missing or a parameter had an invalid value.
+     * A required parameter was missing or had an invalid value.
      */
     BAD_REQUEST,
 
