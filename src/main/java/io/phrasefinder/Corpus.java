@@ -72,8 +72,8 @@ public enum Corpus {
   }
 
   /**
-   * Returns the short name of this enum constant as used as the value for the <code>corpus</code>
-   * URL parameter.
+   * Returns the short name of this enum constant as used as the value for the {@code corpus} URL
+   * parameter.
    * 
    * @return the short name of this enum constant
    */
