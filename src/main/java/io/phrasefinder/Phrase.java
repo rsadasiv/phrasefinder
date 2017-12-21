@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 /**
  * Phrase represents an n-gram from the dataset. For this reason, objects of this class cannot be
  * constructed by the user (there are no public constructors) and objects returned from a search
- * request are immutable (there are no public setter methods). Client code that needs mutable
- * phrase objects is required to introduce its own Phrase class.
+ * request are immutable (there are no public setter methods). Client code that needs mutable phrase
+ * objects is required to introduce its own Phrase class.
  */
 public class Phrase {
 
@@ -43,36 +43,43 @@ public class Phrase {
       GIVEN,
 
       /**
-       * The token has been inserted either by an application of the "?" or the "*" operator.
+       * The token has been inserted either by an application of the <b>?</b> or the <b>*</b>
+       * operator.
        */
       INSERTED,
 
       /**
-       * The token was given as the left- or right-hand side of the "/" operator.
+       * The token was given as the left- or right-hand side of the <b>/</b> operator.
        */
       ALTERNATIVE,
 
       /**
-       * The token has been completed by an application of the "+" operator.
+       * The token has been completed by an application of the <b>+</b> operator.
        */
       COMPLETED;
-      
+
+      /**
+       * Returns the enum constant of this type with the specified ordinal number.
+       * 
+       * @param ordinal the ordinal number of the enum constant to be returned.
+       * @return the enum constant with the specified ordinal number
+       */
       public static Tag fromOrdinal(int ordinal) {
         if (ordinal >= 0 && ordinal < values().length) {
           return values()[ordinal];
         }
-        throw new IllegalArgumentException("Invalid ordinal");
+        throw new IllegalArgumentException("Invalid ordinal number");
       }
     }
 
     private final Tag tag;
     private final String text;
-    
+
     protected Token(Tag tag, String text) {
       this.tag = Objects.requireNonNull(tag);
       this.text = Objects.requireNonNull(text);
     }
-    
+
     @Override
     public int hashCode() {
       final int prime = 31;
@@ -125,7 +132,7 @@ public class Phrase {
   protected long id;
 
   protected Phrase() {}
-  
+
   @Override
   public int hashCode() {
     return (int) (id ^ (id >>> 32));
@@ -156,7 +163,7 @@ public class Phrase {
   public String toString() {
     return Arrays.stream(tokens).map(t -> t.text).collect(Collectors.joining(" "));
   }
-  
+
   /**
    * Returns the phrase's tokens.
    */
@@ -205,7 +212,7 @@ public class Phrase {
   public long getId() {
     return id;
   }
-  
+
   /**
    * Returns the corpus enum the phrase belongs to.
    */
