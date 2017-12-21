@@ -20,20 +20,20 @@ package io.phrasefinder;
  * Options represents optional parameters that can be sent along with a query.
  */
 public class Options {
-  
+
   private int minPhraseLength = 1;
   private int maxPhraseLength = 5;
   private int maxResults = 100;
-  
+
   /**
-   * Creates a new instance initialized with default values.
-   * Fields whose value equals the default value will not be sent explicitly.
+   * Creates a new instance initialized with default values. Fields whose value equals the default
+   * value will not be sent explicitly.
    */
   public Options() {}
 
   /**
-   * Returns the minimum length of matching phrases (number of tokens) to be included in the
-   * result set.
+   * Returns the minimum length of matching phrases (number of tokens) to be included in the result
+   * set.
    */
   public int getMinPhraseLength() {
     return minPhraseLength;
@@ -48,8 +48,8 @@ public class Options {
   }
 
   /**
-   * Returns the maximum length of matching phrases (number of tokens) to be included in the
-   * result set.
+   * Returns the maximum length of matching phrases (number of tokens) to be included in the result
+   * set.
    */
   public int getMaxPhraseLength() {
     return maxPhraseLength;
@@ -71,8 +71,8 @@ public class Options {
   }
 
   /**
-   * Sets the maximum number of phrases to be returned. A smaller value may lead to slightly
-   * faster response times. Defaults to 100 if not set.
+   * Sets the maximum number of phrases to be returned. A smaller value may lead to slightly faster
+   * response times. Defaults to 100 if not set.
    */
   public void setMaxResults(int maxResults) {
     this.maxResults = maxResults;
