@@ -90,10 +90,9 @@ public final class PhraseFinder {
           phrase.tokens = new Token[tokens.length];
           for (int i = 0; i < tokens.length; i++) {
             int tokenLength = tokens[i].length();
-            phrase.tokens[i] = new Token();
-            phrase.tokens[i].tag =
-                Tag.fromOrdinal(Integer.parseInt(tokens[i].substring(tokenLength - 1)));
-            phrase.tokens[i].text = tokens[i].substring(0, tokenLength - 2);
+            int tagOrdinal = Integer.parseInt(tokens[i].substring(tokenLength - 1));
+            phrase.tokens[i] =
+                new Token(Tag.fromOrdinal(tagOrdinal), tokens[i].substring(0, tokenLength - 2));
           }
           phrase.matchCount = Long.parseLong(fields[1]);
           phrase.volumeCount = Integer.parseInt(fields[2]);

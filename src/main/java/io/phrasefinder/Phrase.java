@@ -17,13 +17,14 @@
 package io.phrasefinder;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
  * Phrase represents an n-gram from the dataset. For this reason, objects of this class cannot be
  * constructed by the user (there are no public constructors) and objects returned from a request
- * are immutable (there are no public setter methods). Client code that needs a mutable phrase
- * object is required to introduce its own Phrase class.
+ * are immutable (there are no public setter methods). Client code that needs mutable phrase
+ * objects is required to introduce its own Phrase class.
  */
 public class Phrase {
 
@@ -64,8 +65,13 @@ public class Phrase {
       }
     }
 
-    protected Tag tag;
-    protected String text;
+    private final Tag tag;
+    private final String text;
+    
+    protected Token(Tag tag, String text) {
+      this.tag = Objects.requireNonNull(tag);
+      this.text = Objects.requireNonNull(text);
+    }
     
     @Override
     public int hashCode() {
