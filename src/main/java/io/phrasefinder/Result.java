@@ -16,6 +16,8 @@
 
 package io.phrasefinder;
 
+import java.util.Objects;
+
 /**
  * Result represents a search result.
  */
@@ -57,8 +59,13 @@ public class Result {
     }
   }
 
-  protected Status status;
-  protected Phrase[] phrases;
+  private final Status status;
+  private final Phrase[] phrases;
+  
+  protected Result(Status status, Phrase[] phrases) {
+    this.status = Objects.requireNonNull(status);
+    this.phrases = Objects.requireNonNull(phrases);
+  }
 
   /**
    * Returns the status of the response.
