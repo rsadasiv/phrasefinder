@@ -44,7 +44,7 @@ public class Result {
      */
     BAD_GATEWAY;
 
-    public static Status fromHttpStatusCode(int httpStatusCode) {
+    protected static Status fromHttpStatusCode(int httpStatusCode) {
       switch (httpStatusCode) {
         case 200:
           return Status.OK;
@@ -61,7 +61,7 @@ public class Result {
 
   private final Status status;
   private final Phrase[] phrases;
-  
+
   protected Result(Status status, Phrase[] phrases) {
     this.status = Objects.requireNonNull(status);
     this.phrases = Objects.requireNonNull(phrases);
@@ -75,7 +75,8 @@ public class Result {
   }
 
   /**
-   * Returns the matching phrases.
+   * Returns the matching phrases. If a request was not successful or the result set is empty, an
+   * empty array is returned, i.e. no {@code null} check required.
    */
   public Phrase[] getPhrases() {
     return phrases;
