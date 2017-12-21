@@ -32,7 +32,7 @@ import io.phrasefinder.Phrase.Token.Tag;
 import io.phrasefinder.Result.Status;
 
 /**
- * The PhraseFinder class provides (static) routines for querying the
+ * PhraseFinder provides static routines for querying the
  * <a href="http://phrasefinder.io">PhraseFinder</a> web service.
  * 
  * @see PhraseFinder#search(Corpus, String)
