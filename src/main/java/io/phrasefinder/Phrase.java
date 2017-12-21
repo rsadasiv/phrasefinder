@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
 
 /**
  * Phrase represents an n-gram from the dataset. For this reason, objects of this class cannot be
- * constructed by the user (there are no public constructors) and objects returned from a request
- * are immutable (there are no public setter methods). Client code that needs mutable phrase
- * objects is required to introduce its own Phrase class.
+ * constructed by the user (there are no public constructors) and objects returned from a search
+ * request are immutable (there are no public setter methods). Client code that needs mutable
+ * phrase objects is required to introduce its own Phrase class.
  */
 public class Phrase {
 
@@ -147,6 +147,11 @@ public class Phrase {
     return true;
   }
 
+  /**
+   * Returns a whitespace-delimited concatenation of the token's text.
+   * 
+   * @see Token#getText()
+   */
   @Override
   public String toString() {
     return Arrays.stream(tokens).map(t -> t.text).collect(Collectors.joining(" "));
@@ -202,7 +207,7 @@ public class Phrase {
   }
   
   /**
-   * Returns the corpus the phrase belongs to.
+   * Returns the corpus enum the phrase belongs to.
    */
   public Corpus getCorpus() {
     return Corpus.fromOrdinal(0xFF & (int) (id >>> 32));
