@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-javadoc io.phrasefinder -sourcepath src/main/java -d docs
+javadoc -public -sourcepath src/main/java -d docs io.phrasefinder
