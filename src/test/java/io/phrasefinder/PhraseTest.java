@@ -27,4 +27,15 @@ class PhraseTest {
     assertTrue(Phrase.class.getConstructors().length == 0);
   }
 
+  @Test
+  void emptyPhraseIsZeroInitialized() {
+    assertTrue(Phrase.getEmptyPhrase().tokens.length == 0);
+    assertTrue(Phrase.getEmptyPhrase().getMatchCount() == 0);
+    assertTrue(Phrase.getEmptyPhrase().getVolumeCount() == 0);
+    assertTrue(Phrase.getEmptyPhrase().getFirstYear() == 0);
+    assertTrue(Phrase.getEmptyPhrase().getLastYear() == 0);
+    assertTrue(Phrase.getEmptyPhrase().getScore() == 0);
+    assertTrue(Phrase.getEmptyPhrase().getId() == 0);
+  }
+
 }
