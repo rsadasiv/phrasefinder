@@ -137,9 +137,10 @@ public class Phrase {
   protected Phrase() {}
 
   /**
-   * Returns an empty phrase with zero tokens and all metadata set to zero. The empty phrase can be
-   * used instead of {@code null} to represent the absent of a phrase and to reduce null checks in
-   * client code. The instance returned is a singleton, i.e. it is always the same object.
+   * Returns an empty phrase with a zero-size token array and all metadata set to zero. The empty
+   * phrase can be used instead of {@code null} to represent the absence of a phrase and to reduce
+   * null checks in client code. The instance returned is a singleton, i.e. it is always the same
+   * object.
    */
   public static Phrase getEmptyPhrase() {
     return EMPTY_PHRASE;
