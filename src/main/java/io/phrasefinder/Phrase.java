@@ -123,7 +123,10 @@ public class Phrase {
     }
   }
 
-  protected Token[] tokens;
+  private static final Token[] EMPTY_TOKENS = new Token[0];
+  private static final Phrase EMPTY_PHRASE = new Phrase();
+
+  protected Token[] tokens = EMPTY_TOKENS;
   protected long matchCount;
   protected int volumeCount;
   protected int firstYear;
@@ -132,6 +135,15 @@ public class Phrase {
   protected long id;
 
   protected Phrase() {}
+
+  /**
+   * Returns an empty phrase with zero tokens and all metadata set to zero. The empty phrase can be
+   * used instead of {@code null} to represent the absent of a phrase and to reduce null checks in
+   * client code. The instance returned is a singleton, i.e. it is always the same object.
+   */
+  public static Phrase getEmptyPhrase() {
+    return EMPTY_PHRASE;
+  }
 
   @Override
   public int hashCode() {
