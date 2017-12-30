@@ -45,12 +45,12 @@ project's classpath.
 import java.io.IOException;
 
 import io.phrasefinder.Corpus;
-import io.phrasefinder.Options;
 import io.phrasefinder.Phrase;
 import io.phrasefinder.Phrase.Token;
 import io.phrasefinder.PhraseFinder;
-import io.phrasefinder.Result;
-import io.phrasefinder.Result.Status;
+import io.phrasefinder.SearchOptions;
+import io.phrasefinder.SearchResult;
+import io.phrasefinder.SearchResult.Status;
 
 public final class Example {
 
