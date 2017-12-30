@@ -57,16 +57,18 @@ class PhraseFinderTest {
   @Test
   void phraseIdEncodesCorpusId() throws IOException {
     for (Corpus corpus : Corpus.values()) {
-      Result result = PhraseFinder.search(corpus, COMMON_QUERY);
-      assertEquals(Status.OK, result.getStatus());
-      if (corpus == Corpus.RUSSIAN) {
-        // Russian does not have matching phrases for COMMON_QUERY.
-        assertEquals(0, result.getPhrases().length);
-      } else {
-        assertTrue(result.getPhrases().length > 0);
-        for (Phrase phrase : result.getPhrases()) {
-          int corpusId = Helper.getCorpusIdFromPhraseId(phrase.getId());
-          assertEquals(corpus, Corpus.fromOrdinal(corpusId));
+      if (corpus != Corpus.NONE) {
+        Result result = PhraseFinder.search(corpus, COMMON_QUERY);
+        assertEquals(Status.OK, result.getStatus());
+        if (corpus == Corpus.RUSSIAN) {
+          // Russian does not have matching phrases for COMMON_QUERY.
+          assertEquals(0, result.getPhrases().length);
+        } else {
+          assertTrue(result.getPhrases().length > 0);
+          for (Phrase phrase : result.getPhrases()) {
+            int corpusId = Helper.getCorpusIdFromPhraseId(phrase.getId());
+            assertEquals(corpus, Corpus.fromOrdinal(corpusId));
+          }
         }
       }
     }
@@ -75,7 +77,7 @@ class PhraseFinderTest {
   private static class Helper {
 
     public static int getCorpusIdFromPhraseId(long phraseId) {
-      return (int) (phraseId >>> 40);
+      return (int) (phraseId >>> 40) & 0xFFFF;
     }
 
   }
