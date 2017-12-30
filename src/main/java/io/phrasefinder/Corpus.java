@@ -22,6 +22,11 @@ package io.phrasefinder;
  * Ngram Dataset</a>.
  */
 public enum Corpus {
+  
+  /**
+   * A constant that does not refer to any corpus.
+   */
+  NONE,
 
   /**
    * American English
@@ -79,6 +84,8 @@ public enum Corpus {
    */
   public String shortName() {
     switch (this) {
+      case NONE:
+        return "none";
       case AMERICAN_ENGLISH:
         return "eng-us";
       case BRITISH_ENGLISH:
