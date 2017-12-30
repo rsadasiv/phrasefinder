@@ -16,6 +16,7 @@
 
 package io.phrasefinder;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -29,13 +30,14 @@ class PhraseTest {
 
   @Test
   void emptyPhraseIsZeroInitialized() {
-    assertTrue(Phrase.getEmptyPhrase().tokens.length == 0);
-    assertTrue(Phrase.getEmptyPhrase().getMatchCount() == 0);
-    assertTrue(Phrase.getEmptyPhrase().getVolumeCount() == 0);
-    assertTrue(Phrase.getEmptyPhrase().getFirstYear() == 0);
-    assertTrue(Phrase.getEmptyPhrase().getLastYear() == 0);
-    assertTrue(Phrase.getEmptyPhrase().getScore() == 0);
-    assertTrue(Phrase.getEmptyPhrase().getId() == 0);
+    assertEquals(Corpus.NONE, Phrase.getEmptyPhrase().getCorpus());
+    assertEquals(0, Phrase.getEmptyPhrase().tokens.length);
+    assertEquals(0, Phrase.getEmptyPhrase().getMatchCount());
+    assertEquals(0, Phrase.getEmptyPhrase().getVolumeCount());
+    assertEquals(0, Phrase.getEmptyPhrase().getFirstYear());
+    assertEquals(0, Phrase.getEmptyPhrase().getLastYear());
+    assertEquals(0, Phrase.getEmptyPhrase().getScore());
+    assertEquals(0, Phrase.getEmptyPhrase().getId());
   }
 
 }
