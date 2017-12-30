@@ -19,10 +19,10 @@ package io.phrasefinder.examples;
 import java.io.IOException;
 
 import io.phrasefinder.Corpus;
-import io.phrasefinder.SearchOptions;
 import io.phrasefinder.Phrase;
 import io.phrasefinder.Phrase.Token;
 import io.phrasefinder.PhraseFinder;
+import io.phrasefinder.SearchOptions;
 import io.phrasefinder.SearchResult;
 import io.phrasefinder.SearchResult.Status;
 
