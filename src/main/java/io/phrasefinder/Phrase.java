@@ -229,7 +229,7 @@ public class Phrase {
    * Returns the corpus enum the phrase belongs to.
    */
   public Corpus getCorpus() {
-    return Corpus.fromOrdinal(0xFF & (int) (id >>> 32));
+    return Corpus.fromOrdinal((int) (id >>> 40) & 0xFFFF);
   }
 
 }
