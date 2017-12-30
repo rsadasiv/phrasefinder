@@ -23,7 +23,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import io.phrasefinder.Result.Status;
+import io.phrasefinder.SearchResult.Status;
 
 class PhraseFinderTest {
 
@@ -36,7 +36,7 @@ class PhraseFinderTest {
 
   @Test
   void testSearchCorpusString() throws IOException {
-    Result result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, ENG_US_QUERY);
+    SearchResult result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, ENG_US_QUERY);
     assertEquals(100, result.getPhrases().length);
     assertEquals(ENG_US_EXPECTED_PHRASE_0, result.getPhrases()[0].toString());
     assertEquals(ENG_US_EXPECTED_PHRASE_1, result.getPhrases()[1].toString());
@@ -45,9 +45,9 @@ class PhraseFinderTest {
 
   @Test
   void testSearchCorpusStringOptions() throws IOException {
-    Options options = new Options();
+    SearchOptions options = new SearchOptions();
     options.setMaxResults(3);
-    Result result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, ENG_US_QUERY, options);
+    SearchResult result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, ENG_US_QUERY, options);
     assertEquals(3, result.getPhrases().length);
     assertEquals(ENG_US_EXPECTED_PHRASE_0, result.getPhrases()[0].toString());
     assertEquals(ENG_US_EXPECTED_PHRASE_1, result.getPhrases()[1].toString());
@@ -58,7 +58,7 @@ class PhraseFinderTest {
   void phraseIdEncodesCorpusId() throws IOException {
     for (Corpus corpus : Corpus.values()) {
       if (corpus != Corpus.NONE) {
-        Result result = PhraseFinder.search(corpus, COMMON_QUERY);
+        SearchResult result = PhraseFinder.search(corpus, COMMON_QUERY);
         assertEquals(Status.OK, result.getStatus());
         if (corpus == Corpus.RUSSIAN) {
           // Russian does not have matching phrases for COMMON_QUERY.

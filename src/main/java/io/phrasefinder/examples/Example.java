@@ -19,12 +19,12 @@ package io.phrasefinder.examples;
 import java.io.IOException;
 
 import io.phrasefinder.Corpus;
-import io.phrasefinder.Options;
+import io.phrasefinder.SearchOptions;
 import io.phrasefinder.Phrase;
 import io.phrasefinder.Phrase.Token;
 import io.phrasefinder.PhraseFinder;
-import io.phrasefinder.Result;
-import io.phrasefinder.Result.Status;
+import io.phrasefinder.SearchResult;
+import io.phrasefinder.SearchResult.Status;
 
 public final class Example {
 
@@ -34,11 +34,11 @@ public final class Example {
     String query = "I struggled ???";
 
     // Optional: set the maximum number of phrases to return.
-    Options options = new Options();
+    SearchOptions options = new SearchOptions();
     options.setMaxResults(10);
 
     // Send the request.
-    Result result;
+    SearchResult result;
     try {
       result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, query, options);
     } catch (IOException e) {

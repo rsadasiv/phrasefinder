@@ -29,14 +29,14 @@ import java.util.List;
 
 import io.phrasefinder.Phrase.Token;
 import io.phrasefinder.Phrase.Token.Tag;
-import io.phrasefinder.Result.Status;
+import io.phrasefinder.SearchResult.Status;
 
 /**
  * PhraseFinder provides static routines for querying the
  * <a href="http://phrasefinder.io">PhraseFinder</a> web service.
  * 
  * @see PhraseFinder#search(Corpus, String)
- * @see PhraseFinder#search(Corpus, String, Options)
+ * @see PhraseFinder#search(Corpus, String, SearchOptions)
  */
 public final class PhraseFinder {
 
@@ -47,7 +47,7 @@ public final class PhraseFinder {
    */
   public static final String BASE_URL = "http://phrasefinder.io/search";
 
-  private static final Options DEFAULT_OPTIONS = new Options();
+  private static final SearchOptions DEFAULT_OPTIONS = new SearchOptions();
   private static final Phrase[] EMPTY_PHRASES = new Phrase[0];
 
   /**
@@ -55,12 +55,12 @@ public final class PhraseFinder {
    * 
    * @param corpus is the corpus to be searched.
    * @param query is the query string.
-   * @return A {@link Result} object that contains matching phrases if {@link Result#getStatus()}
-   *         yields {@link Result.Status#OK}. Any other status value is considered an unsuccessful
-   *         request.
+   * @return A {@link SearchResult} object that contains matching phrases if
+   *         {@link SearchResult#getStatus()} yields {@link SearchResult.Status#OK}. Any other
+   *         status value is considered an unsuccessful request.
    * @throws IOException when sending the request or receiving the response failed.
    */
-  public static Result search(Corpus corpus, String query) throws IOException {
+  public static SearchResult search(Corpus corpus, String query) throws IOException {
     return search(corpus, query, DEFAULT_OPTIONS);
   }
 
@@ -73,7 +73,8 @@ public final class PhraseFinder {
    * @return Same as {@link #search(Corpus, String)}
    * @throws IOException Same as {@link #search(Corpus, String)}
    */
-  public static Result search(Corpus corpus, String query, Options options) throws IOException {
+  public static SearchResult search(Corpus corpus, String query, SearchOptions options)
+      throws IOException {
     HttpURLConnection connection =
         (HttpURLConnection) makeUrl(corpus, query, options).openConnection();
     Status status = Status.fromHttpStatusCode(connection.getResponseCode());
@@ -102,13 +103,13 @@ public final class PhraseFinder {
           phrase.score = Double.parseDouble(fields[6]);
           phrases.add(phrase);
         }
-        return new Result(status, phrases.toArray(EMPTY_PHRASES));
+        return new SearchResult(status, phrases.toArray(EMPTY_PHRASES));
       }
     }
-    return new Result(status, EMPTY_PHRASES);
+    return new SearchResult(status, EMPTY_PHRASES);
   }
 
-  private static URL makeUrl(Corpus corpus, String query, Options options)
+  private static URL makeUrl(Corpus corpus, String query, SearchOptions options)
       throws UnsupportedEncodingException, MalformedURLException {
     StringBuilder sb = new StringBuilder();
     sb.append(BASE_URL).append("?format=tsv");

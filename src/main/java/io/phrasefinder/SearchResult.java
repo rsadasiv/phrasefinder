@@ -19,9 +19,9 @@ package io.phrasefinder;
 import java.util.Objects;
 
 /**
- * Result represents a search result.
+ * SearchResult represents a search result.
  */
-public class Result {
+public class SearchResult {
 
   /**
    * Status is an enum type that reports whether a request was successful or not. The value is
@@ -62,7 +62,7 @@ public class Result {
   private final Status status;
   private final Phrase[] phrases;
 
-  protected Result(Status status, Phrase[] phrases) {
+  protected SearchResult(Status status, Phrase[] phrases) {
     this.status = Objects.requireNonNull(status);
     this.phrases = Objects.requireNonNull(phrases);
   }

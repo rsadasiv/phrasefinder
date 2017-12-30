@@ -60,11 +60,11 @@ public final class Example {
     String query = "I struggled ???";
 
     // Optional: set the maximum number of phrases to return.
-    Options options = new Options();
+    SearchOptions options = new SearchOptions();
     options.setMaxResults(10);
 
     // Send the request.
-    Result result;
+    SearchResult result;
     try {
       result = PhraseFinder.search(Corpus.AMERICAN_ENGLISH, query, options);
     } catch (IOException e) {

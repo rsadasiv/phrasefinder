@@ -17,9 +17,9 @@
 package io.phrasefinder;
 
 /**
- * Options represents optional parameters that can be sent along with a query.
+ * SearchOptions represents optional parameters that can be sent along with a query.
  */
-public class Options {
+public class SearchOptions {
 
   private int minPhraseLength = 1;
   private int maxPhraseLength = 5;
@@ -29,7 +29,7 @@ public class Options {
    * Creates a new instance initialized with default values. Fields whose value equals the default
    * value will not be sent explicitly.
    */
-  public Options() {}
+  public SearchOptions() {}
 
   /**
    * Returns the minimum length of matching phrases (number of tokens) to be included in the result
