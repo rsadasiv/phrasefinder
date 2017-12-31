@@ -19,7 +19,7 @@ package io.phrasefinder;
 import java.util.Objects;
 
 /**
- * SearchResult represents a search result.
+ * SearchResult represents the outcome of a search request.
  */
 public class SearchResult {
 
