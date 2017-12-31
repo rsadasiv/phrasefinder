@@ -57,7 +57,7 @@ class PhraseFinderTest {
   @Test
   void phraseIdEncodesCorpusId() throws IOException {
     for (Corpus corpus : Corpus.values()) {
-      if (corpus != Corpus.NONE) {
+      if (corpus != Corpus.NULL) {
         SearchResult result = PhraseFinder.search(corpus, COMMON_QUERY);
         assertEquals(Status.OK, result.getStatus());
         if (corpus == Corpus.RUSSIAN) {

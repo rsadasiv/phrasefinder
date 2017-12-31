@@ -26,7 +26,7 @@ public enum Corpus {
   /**
    * A constant that does not refer to any corpus.
    */
-  NONE,
+  NULL,
 
   /**
    * American English
@@ -84,8 +84,8 @@ public enum Corpus {
    */
   public String shortName() {
     switch (this) {
-      case NONE:
-        return "none";
+      case NULL:
+        return "null";
       case AMERICAN_ENGLISH:
         return "eng-us";
       case BRITISH_ENGLISH:

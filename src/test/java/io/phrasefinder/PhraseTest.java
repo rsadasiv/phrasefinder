@@ -30,7 +30,7 @@ class PhraseTest {
 
   @Test
   void emptyPhraseIsZeroInitialized() {
-    assertEquals(Corpus.NONE, Phrase.getEmptyPhrase().getCorpus());
+    assertEquals(Corpus.NULL, Phrase.getEmptyPhrase().getCorpus());
     assertEquals(0, Phrase.getEmptyPhrase().tokens.length);
     assertEquals(0, Phrase.getEmptyPhrase().getMatchCount());
     assertEquals(0, Phrase.getEmptyPhrase().getVolumeCount());
