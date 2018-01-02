@@ -47,8 +47,6 @@ public final class PhraseFinder {
    */
   public static final String BASE_URL = "http://phrasefinder.io/search";
 
-  private static final Phrase[] EMPTY_PHRASES = new Phrase[0];
-
   /**
    * Sends a search request with default parameters.
    * 
@@ -102,10 +100,10 @@ public final class PhraseFinder {
           phrase.score = Double.parseDouble(fields[6]);
           phrases.add(phrase);
         }
-        return new SearchResult(status, phrases.toArray(EMPTY_PHRASES));
+        return new SearchResult(phrases.toArray(SearchResult.emptyInstance().getPhrases()));
       }
     }
-    return new SearchResult(status, EMPTY_PHRASES);
+    return new SearchResult(status);
   }
 
   private static URL makeUrl(Corpus corpus, String query, SearchOptions options)
