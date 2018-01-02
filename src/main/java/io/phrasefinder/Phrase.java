@@ -124,7 +124,7 @@ public class Phrase {
   }
 
   private static final Token[] EMPTY_TOKENS = new Token[0];
-  private static final Phrase EMPTY_PHRASE = new Phrase();
+  private static final Phrase DEFAULT_INSTANCE = new Phrase();
 
   protected Token[] tokens = EMPTY_TOKENS;
   protected long matchCount;
@@ -142,8 +142,8 @@ public class Phrase {
    * null checks in client code. The instance returned is a singleton, i.e. it is always the same
    * object.
    */
-  public static Phrase emptyPhrase() {
-    return EMPTY_PHRASE;
+  public static Phrase defaultInstance() {
+    return DEFAULT_INSTANCE;
   }
 
   @Override
