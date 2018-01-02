@@ -159,12 +159,12 @@ public class Phrase {
       return true;
     if (obj == null)
       return false;
-    if (getClass() != obj.getClass())
+    if (!(obj instanceof Phrase))
       return false;
+    Phrase other = (Phrase) obj;
     // Since instances of this class are immutable and can only be created by this library and not
     // by the user, it is guaranteed that the id of a phrase sent by the server is always unique.
     // Hence, it is not necessary to compare the actual tokens.
-    Phrase other = (Phrase) obj;
     return id != other.id;
   }
 
