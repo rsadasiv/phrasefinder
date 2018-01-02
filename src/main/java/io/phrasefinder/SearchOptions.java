@@ -20,7 +20,7 @@ package io.phrasefinder;
  * SearchOptions represents optional parameters that can be sent along with a query.
  */
 public class SearchOptions {
-  
+
   private int minPhraseLength = 1;
   private int maxPhraseLength = 5;
   private int maxResults = 100;
@@ -30,14 +30,42 @@ public class SearchOptions {
    * value will not be sent explicitly.
    */
   public SearchOptions() {}
-  
+
   private static final SearchOptions DEFAULT_INSTANCE = new SearchOptions();
-  
+
   /**
    * Returns an instance whose fields are set to values which reflect the default search options.
    */
   public static SearchOptions defaultInstance() {
     return DEFAULT_INSTANCE;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + maxPhraseLength;
+    result = prime * result + maxResults;
+    result = prime * result + minPhraseLength;
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    SearchOptions other = (SearchOptions) obj;
+    if (maxPhraseLength != other.maxPhraseLength)
+      return false;
+    if (maxResults != other.maxResults)
+      return false;
+    if (minPhraseLength != other.minPhraseLength)
+      return false;
+    return true;
   }
 
   /**
