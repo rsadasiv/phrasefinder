@@ -1,6 +1,6 @@
 // This file is part of PhraseFinder. http://phrasefinder.io
 //
-// Copyright (C) 2016-2017 Martin Trenkmann
+// Copyright (C) 2016-2018 Martin Trenkmann
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
