@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * Phrase represents an n-gram from the dataset. For this reason, objects of this class cannot be
  * constructed by the user (there are no public constructors) and objects returned from a search
  * request are immutable (there are no public setter methods). Client code that needs mutable phrase
- * objects is required to introduce its own Phrase class.
+ * objects is required to introduce their own Phrase class.
  */
 public class Phrase {
 
