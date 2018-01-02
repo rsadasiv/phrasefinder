@@ -111,7 +111,7 @@ public class SearchResult {
       return true;
     if (obj == null)
       return false;
-    if (getClass() != obj.getClass())
+    if (!(obj instanceof SearchResult))
       return false;
     SearchResult other = (SearchResult) obj;
     if (!Arrays.equals(phrases, other.phrases))
