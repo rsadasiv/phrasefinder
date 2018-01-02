@@ -16,6 +16,7 @@
 
 package io.phrasefinder;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -93,6 +94,31 @@ public class SearchResult {
    */
   public static SearchResult emptyInstance() {
     return EMPTY_INSTANCE;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + Arrays.hashCode(phrases);
+    result = prime * result + ((status == null) ? 0 : status.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    SearchResult other = (SearchResult) obj;
+    if (!Arrays.equals(phrases, other.phrases))
+      return false;
+    if (status != other.status)
+      return false;
+    return true;
   }
 
   /**
