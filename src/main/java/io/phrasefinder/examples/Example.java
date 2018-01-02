@@ -17,6 +17,7 @@
 package io.phrasefinder.examples;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import io.phrasefinder.Corpus;
 import io.phrasefinder.Phrase;
@@ -58,6 +59,8 @@ public final class Example {
         System.out.printf(" %s", token.getText());
       }
       System.out.println();
+      
+      Collections.emptyList();
     }
   }
 }

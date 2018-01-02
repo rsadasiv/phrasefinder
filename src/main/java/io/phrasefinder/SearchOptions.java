@@ -30,8 +30,31 @@ public class SearchOptions {
    * value will not be sent explicitly.
    */
   public SearchOptions() {}
+  
+  private static final class ImmutableSearchOptions extends SearchOptions {
+    
+    private ImmutableSearchOptions() {
+      super();
+    }
 
-  private static final SearchOptions DEFAULT_INSTANCE = new SearchOptions();
+    @Override
+    public void setMinPhraseLength(int minPhraseLength) {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setMaxPhraseLength(int maxPhraseLength) {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setMaxResults(int maxResults) {
+      throw new UnsupportedOperationException();
+    }
+    
+  }
+
+  private static final SearchOptions DEFAULT_INSTANCE = new ImmutableSearchOptions();
 
   /**
    * Returns an instance whose fields are set to values which reflect the default search options.
