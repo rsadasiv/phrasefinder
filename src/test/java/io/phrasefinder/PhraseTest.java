@@ -28,7 +28,7 @@ class PhraseTest {
   }
 
   @Test
-  void emptyPhraseIsZeroInitialized() {
+  void emptyInstanceIsZeroInitialized() {
     assertEquals(Corpus.NULL, Phrase.emptyInstance().getCorpus());
     assertEquals(0, Phrase.emptyInstance().tokens.length);
     assertEquals(0, Phrase.emptyInstance().getMatchCount());
