@@ -58,9 +58,16 @@ public class SearchResult {
       }
     }
   }
+  
+  private static final Phrase[] EMPTY_PHRASES = new Phrase[0];
 
   private final Status status;
   private final Phrase[] phrases;
+  
+  private SearchResult() {
+    this.status = Status.OK;
+    this.phrases = EMPTY_PHRASES;
+  }
 
   protected SearchResult(Status status, Phrase[] phrases) {
     this.status = Objects.requireNonNull(status);
