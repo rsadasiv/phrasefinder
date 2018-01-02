@@ -142,7 +142,7 @@ public class Phrase {
    * null checks in client code. The instance returned is a singleton, i.e. it is always the same
    * object.
    */
-  public static Phrase getEmptyPhrase() {
+  public static Phrase emptyPhrase() {
     return EMPTY_PHRASE;
   }
 

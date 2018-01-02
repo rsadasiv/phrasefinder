@@ -17,7 +17,6 @@
 package io.phrasefinder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,19 +24,19 @@ class PhraseTest {
 
   @Test
   void hasNoPublicConstructors() {
-    assertTrue(Phrase.class.getConstructors().length == 0);
+    assertEquals(0, Phrase.class.getConstructors().length);
   }
 
   @Test
   void emptyPhraseIsZeroInitialized() {
-    assertEquals(Corpus.NULL, Phrase.getEmptyPhrase().getCorpus());
-    assertEquals(0, Phrase.getEmptyPhrase().tokens.length);
-    assertEquals(0, Phrase.getEmptyPhrase().getMatchCount());
-    assertEquals(0, Phrase.getEmptyPhrase().getVolumeCount());
-    assertEquals(0, Phrase.getEmptyPhrase().getFirstYear());
-    assertEquals(0, Phrase.getEmptyPhrase().getLastYear());
-    assertEquals(0, Phrase.getEmptyPhrase().getScore());
-    assertEquals(0, Phrase.getEmptyPhrase().getId());
+    assertEquals(Corpus.NULL, Phrase.emptyPhrase().getCorpus());
+    assertEquals(0, Phrase.emptyPhrase().tokens.length);
+    assertEquals(0, Phrase.emptyPhrase().getMatchCount());
+    assertEquals(0, Phrase.emptyPhrase().getVolumeCount());
+    assertEquals(0, Phrase.emptyPhrase().getFirstYear());
+    assertEquals(0, Phrase.emptyPhrase().getLastYear());
+    assertEquals(0, Phrase.emptyPhrase().getScore());
+    assertEquals(0, Phrase.emptyPhrase().getId());
   }
 
 }
