@@ -53,4 +53,9 @@ class SearchOptionsTest {
     });
   }
 
+  @Test
+  void defaultInstanceEqualsDefaultConstructedInstance() {
+    assertEquals(SearchOptions.defaultInstance(), new SearchOptions());
+  }
+
 }
