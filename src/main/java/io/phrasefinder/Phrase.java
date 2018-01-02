@@ -124,7 +124,6 @@ public class Phrase {
   }
 
   private static final Token[] EMPTY_TOKENS = new Token[0];
-  private static final Phrase DEFAULT_INSTANCE = new Phrase();
 
   protected Token[] tokens = EMPTY_TOKENS;
   protected long matchCount;
@@ -135,6 +134,8 @@ public class Phrase {
   protected long id;
 
   protected Phrase() {}
+  
+  private static final Phrase DEFAULT_INSTANCE = new Phrase();
 
   /**
    * Returns an empty phrase with a zero-size token array and all metadata set to zero. The empty
