@@ -134,13 +134,13 @@ public class Phrase {
   protected long id;
 
   protected Phrase() {}
-  
+
   private static final Phrase EMPTY_INSTANCE = new Phrase();
 
   /**
    * Returns an empty phrase with a zero-size token array and all metadata set to zero. The empty
-   * phrase can be used instead of {@code null} to represent the absence of a phrase and to reduce
-   * null checks in client code.
+   * phrase can be used instead of {@code null} to represent the absence of a phrase and/or to
+   * reduce null checks in client code.
    */
   public static Phrase emptyInstance() {
     return EMPTY_INSTANCE;
