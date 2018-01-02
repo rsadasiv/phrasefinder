@@ -26,8 +26,7 @@ public class SearchOptions {
   private int maxResults = 100;
 
   /**
-   * Creates a new instance initialized with default values. Fields whose value equals the default
-   * value will not be sent explicitly.
+   * Creates a new instance initialized with default values.
    */
   public SearchOptions() {}
   
