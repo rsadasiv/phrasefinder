@@ -29,9 +29,9 @@ public class SearchOptions {
    * Creates a new instance initialized with default values.
    */
   public SearchOptions() {}
-  
+
   private static final class ImmutableSearchOptions extends SearchOptions {
-    
+
     private ImmutableSearchOptions() {
       super();
     }
@@ -50,7 +50,7 @@ public class SearchOptions {
     public void setMaxResults(int maxResults) {
       throw new UnsupportedOperationException();
     }
-    
+
   }
 
   private static final SearchOptions DEFAULT_INSTANCE = new ImmutableSearchOptions();
@@ -78,7 +78,7 @@ public class SearchOptions {
       return true;
     if (obj == null)
       return false;
-    if (getClass() != obj.getClass())
+    if (!(obj instanceof SearchOptions))
       return false;
     SearchOptions other = (SearchOptions) obj;
     if (maxPhraseLength != other.maxPhraseLength)
