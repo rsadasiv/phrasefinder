@@ -58,12 +58,12 @@ public class SearchResult {
       }
     }
   }
-  
+
   private static final Phrase[] EMPTY_PHRASES = new Phrase[0];
 
   private final Status status;
   private final Phrase[] phrases;
-  
+
   private SearchResult() {
     this.status = Status.OK;
     this.phrases = EMPTY_PHRASES;
@@ -72,6 +72,17 @@ public class SearchResult {
   protected SearchResult(Status status, Phrase[] phrases) {
     this.status = Objects.requireNonNull(status);
     this.phrases = Objects.requireNonNull(phrases);
+  }
+
+  public static final SearchResult EMPTY_INSTANCE = new SearchResult();
+
+  /**
+   * Returns an empty search result with a zero-size phrase array and whose status code is set to
+   * {@link Status#OK}. The empty result can be used instead of {@code null} to represent the
+   * absence of a result and/or to reduce null checks in client code.
+   */
+  public static SearchResult emptyInstance() {
+    return EMPTY_INSTANCE;
   }
 
   /**
