@@ -68,10 +68,15 @@ public class SearchResult {
     this.status = Status.OK;
     this.phrases = EMPTY_PHRASES;
   }
-  
+
   protected SearchResult(Status status) {
     this.status = Objects.requireNonNull(status);
     this.phrases = EMPTY_PHRASES;
+  }
+
+  protected SearchResult(Phrase[] phrases) {
+    this.status = Status.OK;
+    this.phrases = Objects.requireNonNull(phrases);
   }
 
   protected SearchResult(Status status, Phrase[] phrases) {
