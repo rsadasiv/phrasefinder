@@ -29,14 +29,14 @@ class PhraseTest {
 
   @Test
   void emptyPhraseIsZeroInitialized() {
-    assertEquals(Corpus.NULL, Phrase.defaultInstance().getCorpus());
-    assertEquals(0, Phrase.defaultInstance().tokens.length);
-    assertEquals(0, Phrase.defaultInstance().getMatchCount());
-    assertEquals(0, Phrase.defaultInstance().getVolumeCount());
-    assertEquals(0, Phrase.defaultInstance().getFirstYear());
-    assertEquals(0, Phrase.defaultInstance().getLastYear());
-    assertEquals(0, Phrase.defaultInstance().getScore());
-    assertEquals(0, Phrase.defaultInstance().getId());
+    assertEquals(Corpus.NULL, Phrase.emptyInstance().getCorpus());
+    assertEquals(0, Phrase.emptyInstance().tokens.length);
+    assertEquals(0, Phrase.emptyInstance().getMatchCount());
+    assertEquals(0, Phrase.emptyInstance().getVolumeCount());
+    assertEquals(0, Phrase.emptyInstance().getFirstYear());
+    assertEquals(0, Phrase.emptyInstance().getLastYear());
+    assertEquals(0, Phrase.emptyInstance().getScore());
+    assertEquals(0, Phrase.emptyInstance().getId());
   }
 
 }
