@@ -47,7 +47,6 @@ public final class PhraseFinder {
    */
   public static final String BASE_URL = "http://phrasefinder.io/search";
 
-  private static final SearchOptions DEFAULT_OPTIONS = new SearchOptions();
   private static final Phrase[] EMPTY_PHRASES = new Phrase[0];
 
   /**
@@ -61,7 +60,7 @@ public final class PhraseFinder {
    * @throws IOException when sending the request or receiving the response failed.
    */
   public static SearchResult search(Corpus corpus, String query) throws IOException {
-    return search(corpus, query, DEFAULT_OPTIONS);
+    return search(corpus, query, SearchOptions.defaultInstance());
   }
 
   /**
@@ -116,13 +115,13 @@ public final class PhraseFinder {
     sb.append("&corpus=").append(corpus.shortName());
     sb.append("&query=")
         .append(URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8.toString()));
-    if (options.getMinPhraseLength() != DEFAULT_OPTIONS.getMinPhraseLength()) {
+    if (options.getMinPhraseLength() != SearchOptions.defaultInstance().getMinPhraseLength()) {
       sb.append("&nmin=").append(options.getMinPhraseLength());
     }
-    if (options.getMaxPhraseLength() != DEFAULT_OPTIONS.getMaxPhraseLength()) {
+    if (options.getMaxPhraseLength() != SearchOptions.defaultInstance().getMaxPhraseLength()) {
       sb.append("&nmax=").append(options.getMaxPhraseLength());
     }
-    if (options.getMaxResults() != DEFAULT_OPTIONS.getMaxResults()) {
+    if (options.getMaxResults() != SearchOptions.defaultInstance().getMaxResults()) {
       sb.append("&topk=").append(options.getMaxResults());
     }
     return new URL(sb.toString());
