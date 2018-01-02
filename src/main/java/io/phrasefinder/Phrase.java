@@ -123,9 +123,7 @@ public class Phrase {
     }
   }
 
-  private static final Token[] EMPTY_TOKENS = new Token[0];
-
-  protected Token[] tokens = EMPTY_TOKENS;
+  protected Token[] tokens;
   protected long matchCount;
   protected int volumeCount;
   protected int firstYear;
@@ -133,7 +131,11 @@ public class Phrase {
   protected double score;
   protected long id;
 
-  protected Phrase() {}
+  private static final Token[] EMPTY_TOKENS = new Token[0];
+
+  protected Phrase() {
+    this.tokens = EMPTY_TOKENS;
+  }
 
   private static final Phrase EMPTY_INSTANCE = new Phrase();
 
