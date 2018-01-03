@@ -33,11 +33,11 @@ Alternatively, if you want to build a .jar file without installing it, run:
 mvn package
 ```
 
-The .jar file will be placed in the `target` directory.
+The .jar files (binary, javadoc, sources) will be placed in the `target` directory.
 
 ## Installation without Maven
 
-Download the latest .jar files (binary, javadoc, sources) from the release page of this repository and add it to your project's classpath.
+Download the latest .jar files from the release page of this repository and add it to your project's classpath.
 
 
 ## Example
