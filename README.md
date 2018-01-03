@@ -12,10 +12,12 @@ The PhraseFinder client library for Java is build using Maven, which can be inst
 To build and install the library into your local Maven repository, run:
 
 ```sh
+git clone https://github.com/mtrenkmann/phrasefinder-client-java.git
+cd phrasefinder-client-java
 mvn install
 ```
 
-Then, add the following dependency to the `pom.xml` of your own Maven managed project:
+Then, add the following dependency to the `pom.xml` of your Maven managed project:
 
 ```xml
 <dependency>
@@ -35,8 +37,7 @@ The .jar file will be placed in the `target` directory.
 
 ## Installation without Maven
 
-Download the latest .jar file from the release page of this repository and add it to your
-project's classpath.
+Download the latest .jar files (binary, javadoc, sources) from the release page of this repository and add it to your project's classpath.
 
 
 ## Example
@@ -92,8 +93,6 @@ public final class Example {
 ### Compile and Run
 
 ```sh
-git clone https://github.com/mtrenkmann/phrasefinder-client-java.git
-cd phrasefinder-client-java
 javac src/main/java/io/phrasefinder/*.java src/main/java/io/phrasefinder/examples/Example.java
 java -cp src/main/java io.phrasefinder.examples.Example
 
