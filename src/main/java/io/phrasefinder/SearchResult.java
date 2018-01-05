@@ -91,6 +91,7 @@ public class SearchResult {
    * Returns an empty search result with a zero-size phrase array and whose status code is set to
    * {@link Status#OK}. The empty result can be used instead of {@code null} to represent the
    * absence of a result and/or to reduce null checks in client code.
+     * @return 
    */
   public static SearchResult emptyInstance() {
     return EMPTY_INSTANCE;
@@ -123,6 +124,7 @@ public class SearchResult {
 
   /**
    * Returns the status of the response.
+     * @return 
    */
   public Status getStatus() {
     return status;
@@ -131,6 +133,7 @@ public class SearchResult {
   /**
    * Returns the matching phrases. If a request was not successful or the result set is empty, an
    * empty array is returned, i.e. no {@code null} check required.
+     * @return 
    */
   public Phrase[] getPhrases() {
     return phrases;

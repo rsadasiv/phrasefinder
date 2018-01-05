@@ -110,6 +110,7 @@ public class Phrase {
 
     /**
      * Returns the token's tag.
+       * @return 
      */
     public Tag getTag() {
       return tag;
@@ -117,13 +118,14 @@ public class Phrase {
 
     /**
      * Returns the token's text.
+       * @return 
      */
     public String getText() {
       return text;
     }
   }
 
-  protected Token[] tokens;
+  public Token[] tokens;
   protected long matchCount;
   protected int volumeCount;
   protected int firstYear;
@@ -143,6 +145,7 @@ public class Phrase {
    * Returns an empty phrase with a zero-size token array and all metadata set to zero. The empty
    * phrase can be used instead of {@code null} to represent the absence of a phrase and/or to
    * reduce null checks in client code.
+     * @return 
    */
   public static Phrase emptyInstance() {
     return EMPTY_INSTANCE;
@@ -171,6 +174,7 @@ public class Phrase {
   /**
    * Returns a whitespace-delimited concatenation of the token's text.
    * 
+     * @return 
    * @see Token#getText()
    */
   @Override
